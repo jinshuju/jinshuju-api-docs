@@ -65,6 +65,8 @@ state | string | 在第一步获得的唯一随机的的字符串
     
     curl -H "Authorization: token OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
     
+目前access_token有效期为7200秒。
+    
 ## Redirect URL
 
 `redirect_uri`是必须的。如果你使用[omniauth-jinshuju](https://github.com/jinshuju/omniauth-jinshuju)，就可以使用类似于`https://domain.com/auth/jinshuju/callback`的地址。
