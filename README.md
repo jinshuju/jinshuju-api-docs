@@ -74,4 +74,15 @@ state | string | 在第一步获得的唯一随机的的字符串
 ## Scopes
 
 Scope定义了资源范围。目前支持两个：`public`和`forms`。
+
+## Rate Limit
+
+每个用户每小时调用120次。HTTP Header中会留下相应的信息。
+
+    X-RateLimit-Limit:120
+    X-RateLimit-Remaining:119
+    
+目前这个数值不可更改。
+
+
     
