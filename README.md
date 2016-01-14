@@ -13,9 +13,8 @@
 
 v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议进行访问。相关URL如下：
 
-认证域: https://account.jinshuju.net
-接口域: https://api.jinshuju.net/v4
-
+* 认证域: https://account.jinshuju.net
+* 接口域: https://api.jinshuju.net/v4
 
 ### 1. 转向到金数据申请验证
 
