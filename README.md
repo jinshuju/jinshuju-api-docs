@@ -18,7 +18,7 @@ v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议
 
 ### 1. 转向到金数据申请验证
 
-    GET https://github.com/login/oauth/authorize
+    GET https://account.jinshuju.net/oauth/authorize
   
 参数
 
