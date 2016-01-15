@@ -84,5 +84,157 @@ Scope定义了资源范围。目前支持两个：`public`和`forms`。
     
 目前这个数值不可更改。
 
+## API列表
 
+### 获取表单列表
+
+    GET https://api.jinshuju.net/v4/forms?access_token=...
     
+```json
+{
+    "forms": [
+        {
+            "created_at": "2016-01-14T12:52:32.644Z",
+            "description": null,
+            "entries_count": 0,
+            "id": "56979a103eec767979000000",
+            "name": "文件夹内的表单",
+            "setting": {
+                "app_notification_enabled": true,
+                "color": "#afa373",
+                "icon": "fontello-chart-outline",
+                "open_rule": "open",
+                "permission": "password",
+                "push_url": null,
+                "result_state": "closed",
+                "result_url": null,
+                "search_state": "closed",
+                "search_url": null
+            },
+            "shared": false,
+            "token": "RygpW3"
+        },
+        {
+            "created_at": "2016-01-14T10:46:47.168Z",
+            "description": "表单介绍在这里。\n\n表单介绍在这里。",
+            "entries_count": 1,
+            "id": "56977c973eec76796a000008",
+            "name": "第二个表单(很多字)",
+            "setting": {
+                "app_notification_enabled": true,
+                "color": "#8d7ea8",
+                "icon": "fontello-pencil",
+                "open_rule": "open",
+                "permission": "public",
+                "push_url": null,
+                "result_state": "closed",
+                "result_url": null,
+                "search_state": "closed",
+                "search_url": null
+            },
+            "shared": false,
+            "token": "0HYzQO"
+        },
+        {
+            "created_at": "2015-11-19T02:18:12.044Z",
+            "description": null,
+            "entries_count": 0,
+            "id": "564d31643eec76528e000002",
+            "name": "\u6a21\u72481",
+            "setting": {
+                "app_notification_enabled": true,
+                "color": "#49afcb",
+                "icon": "fontello-graduation-cap",
+                "open_rule": "open",
+                "permission": "public",
+                "push_url": null,
+                "result_state": "closed",
+                "result_url": null,
+                "search_state": "closed",
+                "search_url": null
+            },
+            "shared": false,
+            "token": "isE6zh"
+        }
+    ],
+    "meta": {
+        "per_page": 20,
+        "total": 3
+    }
+}
+
+```
+
+### 获取表单详情
+
+    GET https://api.jinshuju.net/v4/forms/RygpW3?access_token=...
+
+```json
+{
+    "created_at": "2016-01-14T10:46:47.168Z",
+    "description": "表单描述",
+    "entries_count": 1,
+    "fields": [
+        {
+            "api_code": "field_1",
+            "label": null,
+            "notes": "",
+            "type": "page_break"
+        },
+        {
+            "api_code": "field_2",
+            "label": "\u59d3\u540d",
+            "notes": "",
+            "predefined_value": null,
+            "private": false,
+            "type": "single_line_text",
+            "validations": {}
+        },
+        
+        ...
+ 
+    ],
+    "id": "56977c973eec76796a000008",
+    "name": "表单名称",
+    "setting": {
+        "app_notification_enabled": true,
+        "color": "#8d7ea8",
+        "icon": "fontello-pencil",
+        "open_rule": "open",
+        "permission": "public",
+        "push_url": null,
+        "result_state": "closed",
+        "result_url": null,
+        "search_state": "closed",
+        "search_url": null
+    },
+    "shared": false,
+    "token": "0HYzQO"
+}
+
+```
+
+### 获取表单当前状态
+
+    GET https://api.jinshuju.net/v4/forms/RygpW3/status
+
+```json
+{
+  "is_open": true,
+  "permission": "public",
+  "entries_count": 1
+}
+```
+
+### 获取单条数据
+
+    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_code=...
+    
+JSON Load:
+
+```json
+{
+  "field1": "对应的序列化方式"
+  ...
+}
+```
