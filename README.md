@@ -26,7 +26,7 @@ v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议
 ------------- | ------------- | -----------
 client_id  | string | **必须**。你注册的金数据应用ID。目前并未开放
 redirect_uri  | string | **必须**。你应用的callback URI。当授权完成之后要转向的地址
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public`, `forms`
+scope  | string | 空格隔开的列表。目前支持的scope包括：`public`, `forms`, `read_entries`
 state | string | 唯一随机的的字符串。这是用来防止跨站共计的。
 
 ### 2. 金数据转向到你的地址
@@ -35,7 +35,7 @@ state | string | 唯一随机的的字符串。这是用来防止跨站共计的
 
 拿到code之后，就可以交换access token: 
 
-    POST https://account.jinshuju.net/oauth/access_token
+    POST https://account.jinshuju.net/oauth/token
     
 参数
 
@@ -73,7 +73,7 @@ state | string | 在第一步获得的唯一随机的的字符串
 
 ## Scopes
 
-Scope定义了资源范围。目前支持两个：`public`和`forms`。
+Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_entries`
 
 ## Rate Limit
 
@@ -88,7 +88,10 @@ Scope定义了资源范围。目前支持两个：`public`和`forms`。
 
 ### 获取表单列表
 
+需要Scope: `forms`
+
     GET https://api.jinshuju.net/v4/forms?access_token=...
+    
     
 ```json
 {
@@ -167,6 +170,8 @@ Scope定义了资源范围。目前支持两个：`public`和`forms`。
 
 ### 获取表单详情
 
+需要Scope: `forms`
+
     GET https://api.jinshuju.net/v4/forms/RygpW3?access_token=...
 
 ```json
@@ -216,6 +221,8 @@ Scope定义了资源范围。目前支持两个：`public`和`forms`。
 
 ### 获取表单当前状态
 
+需要Scope: `forms`
+
     GET https://api.jinshuju.net/v4/forms/RygpW3/status
 
 ```json
@@ -228,6 +235,8 @@ Scope定义了资源范围。目前支持两个：`public`和`forms`。
 
 ### 获取单条数据
 
+需要Scope: `read_entries`
+
     POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_code=...
     
 JSON Load:
@@ -239,104 +248,104 @@ JSON Load:
   "field_2": "姓名",
   "field_3": "email@domain.com",
   "field_4": {
-  "value": "18899029392"
-  },
+    "value": "18899029392"
+    },
   "field_5": "020-99887727",
   "field_6": {
-  "province": "天津市",
-  "city": "天津市",
-  "district": "北辰区",
-  "street": "天津地址"
-  },
+    "province": "天津市",
+    "city": "天津市",
+    "district": "北辰区",
+    "street": "天津地址"
+    },
   "field_7": {
-  "latitude": "31.233293",
-  "longitude": "121.39189",
-  "address": "上海市普陀区长征镇天地软件园"
-  },
+    "latitude": "31.233293",
+    "longitude": "121.39189",
+    "address": "上海市普陀区长征镇天地软件园"
+    },
   "field_8": "bGKQ",
   "field_9": [
-  "ER0Q",
-  "LJHY"
-  ],
+    "ER0Q",
+    "LJHY"
+    ],
   "field_10": "TKs8",
   "field_11": [
-  {
-  "statement": "YoJ2",
-  "choice": "zQZ9"
-  },
-  {
-  "statement": "NUPN",
-  "choice": "rz8G"
-  },
-  {
-  "statement": "iCSI",
-  "choice": "rz8G"
-  }
-  ],
+    {
+      "statement": "YoJ2",
+      "choice": "zQZ9"
+    },
+    {
+      "statement": "NUPN",
+      "choice": "rz8G"
+    },
+    {
+      "statement": "iCSI",
+      "choice": "rz8G"
+    }
+    ],
   "field_12": [
-  {
-  "statement": "JKzL",
-  "dimensions": {
-  "7u4Z": "矩阵1_1",
-  "mvA5": "矩阵1_2",
-  "1Nrk": "矩阵1_3"
-  }
-  },
-  {
-  "statement": "341l",
-  "dimensions": {
-  "7u4Z": "矩阵2_1",
-  "mvA5": "矩阵2_2",
-  "1Nrk": "矩阵2_3"
-  }
-  },
-  {
-  "statement": "E7xN",
-  "dimensions": {
-  "7u4Z": "矩阵3_1",
-  "mvA5": "矩阵3_2",
-  "1Nrk": "矩阵3_3"
-  }
-  }
-  ],
+    {
+      "statement": "JKzL",
+      "dimensions": {
+        "7u4Z": "矩阵1_1",
+        "mvA5": "矩阵1_2",
+        "1Nrk": "矩阵1_3"
+      }
+    },
+    {
+      "statement": "341l",
+      "dimensions": {
+        "7u4Z": "矩阵2_1",
+        "mvA5": "矩阵2_2",
+        "1Nrk": "矩阵2_3"
+        }
+      },
+    {
+      "statement": "E7xN",
+      "dimensions": {
+      "7u4Z": "矩阵3_1",
+      "mvA5": "矩阵3_2",
+      "1Nrk": "矩阵3_3"
+      }
+    }
+    ],
   "field_13": 123232,
   "field_14": {
-  "hour": 1,
-  "minute": 3
-  },
+    "hour": 1,
+    "minute": 3
+    },
   "field_15": "2016-01-16",
   "field_16": "k9gK",
   "field_19": "https://jinshuju.net",
   "field_20": 2,
   "field_21": {
-  "level_1": "b8Kk",
-  "level_2": "tuD9"
-  },
+    "level_1": "b8Kk",
+    "level_2": "tuD9"
+    },
   "field_22": [
-  {
-  "name": "1_22_pricing.pdf",
-  "url": "https://fileurl"
-  }
-  ],
-  "field_23": [
-  {
-  "item": "56977c853eec76796f000001",
-  "number": 1
-  }
-  ],
-  "field_24": [
-  {
-  "item": "56977c973eec76796a000049",
-  "number": 2
-  },
-  {
-  "item": "56977c973eec76796a00004a",
-  "number": 2
-  },
-  {
-  "item": "56977c973eec76796a00004b",
-  "number": 3
-  }
+    {
+      "name": "1_22_pricing.pdf",
+      "url": "https://fileurl"
+    }
+    ],
+    "field_23": [
+    {
+      "item": "56977c853eec76796f000001",
+      "number": 1
+    }
+    ],
+    "field_24": [
+    {
+      "item": "56977c973eec76796a000049",
+      "number": 2
+    },
+    {
+      "item": "56977c973eec76796a00004a",
+      "number": 2
+    },
+    {
+      "item": "56977c973eec76796a00004b",
+      "number": 3
+    }
   ],
   "creator_name": "user@mail.com",
   "updater_name": "user@gmail.com",
@@ -346,5 +355,20 @@ JSON Load:
   "info_platform": "Macintosh",
   "info_os": "OS X 10.11.2",
   "info_browser": "Chrome 47.0.2526.106"
+}
+```
+
+### 获取当前用户基本信息
+
+需要Scope: `public`或者默认
+
+    GET https://api.jinshuju.net/v4/me
+    
+```json
+{
+  "email": "email@mail.com",
+  "nickname": "email@mail.com",
+  "avatar": null,
+  "paid": false
 }
 ```
