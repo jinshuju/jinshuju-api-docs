@@ -234,7 +234,117 @@ JSON Load:
 
 ```json
 {
-  "field1": "对应的数据结果"
-  ...
+  "serial_number": 1,
+  "total_price": 0,
+  "field_2": "姓名",
+  "field_3": "email@domain.com",
+  "field_4": {
+  "value": "18899029392"
+  },
+  "field_5": "020-99887727",
+  "field_6": {
+  "province": "天津市",
+  "city": "天津市",
+  "district": "北辰区",
+  "street": "天津地址"
+  },
+  "field_7": {
+  "latitude": "31.233293",
+  "longitude": "121.39189",
+  "address": "上海市普陀区长征镇天地软件园"
+  },
+  "field_8": "bGKQ",
+  "field_9": [
+  "ER0Q",
+  "LJHY"
+  ],
+  "field_10": "TKs8",
+  "field_11": [
+  {
+  "statement": "YoJ2",
+  "choice": "zQZ9"
+  },
+  {
+  "statement": "NUPN",
+  "choice": "rz8G"
+  },
+  {
+  "statement": "iCSI",
+  "choice": "rz8G"
+  }
+  ],
+  "field_12": [
+  {
+  "statement": "JKzL",
+  "dimensions": {
+  "7u4Z": "矩阵1_1",
+  "mvA5": "矩阵1_2",
+  "1Nrk": "矩阵1_3"
+  }
+  },
+  {
+  "statement": "341l",
+  "dimensions": {
+  "7u4Z": "矩阵2_1",
+  "mvA5": "矩阵2_2",
+  "1Nrk": "矩阵2_3"
+  }
+  },
+  {
+  "statement": "E7xN",
+  "dimensions": {
+  "7u4Z": "矩阵3_1",
+  "mvA5": "矩阵3_2",
+  "1Nrk": "矩阵3_3"
+  }
+  }
+  ],
+  "field_13": 123232,
+  "field_14": {
+  "hour": 1,
+  "minute": 3
+  },
+  "field_15": "2016-01-16",
+  "field_16": "k9gK",
+  "field_19": "https://jinshuju.net",
+  "field_20": 2,
+  "field_21": {
+  "level_1": "b8Kk",
+  "level_2": "tuD9"
+  },
+  "field_22": [
+  {
+  "name": "1_22_pricing.pdf",
+  "url": "https://fileurl"
+  }
+  ],
+  "field_23": [
+  {
+  "item": "56977c853eec76796f000001",
+  "number": 1
+  }
+  ],
+  "field_24": [
+  {
+  "item": "56977c973eec76796a000049",
+  "number": 2
+  },
+  {
+  "item": "56977c973eec76796a00004a",
+  "number": 2
+  },
+  {
+  "item": "56977c973eec76796a00004b",
+  "number": 3
+  }
+  ],
+  "creator_name": "user@mail.com",
+  "updater_name": "user@gmail.com",
+  "created_at": "2016-01-15T02:27:49.285Z",
+  "updated_at": "2016-01-15T02:57:17.691Z",
+  "info_remote_ip": "180.168.0.0",
+  "info_platform": "Macintosh",
+  "info_os": "OS X 10.11.2",
+  "info_browser": "Chrome 47.0.2526.106"
 }
 ```
