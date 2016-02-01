@@ -26,7 +26,7 @@ v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议
 ------------- | ------------- | -----------
 client_id  | string | **必须**。你注册的金数据应用ID。目前并未开放
 redirect_uri  | string | **必须**。你应用的callback URI。当授权完成之后要转向的地址
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public`, `forms`, `read_entries`
+scope  | string | 空格隔开的列表。目前支持的scope包括：`public`, `forms`, `read_entries`，默认为public
 state | string | 唯一随机的的字符串。这是用来防止跨站共计的。
 
 ### 2. 金数据转向到你的地址
@@ -47,7 +47,7 @@ code  | string | **必须**。在第一步获得的code
 redirect_uri  | string | **必须**。你应用的callback URI。当授权完成之后要转向的地址
 state | string | 在第一步获得的唯一随机的的字符串
 
-### Response
+
 
 默认情况下，返回的response的形式如下：
 
@@ -74,6 +74,9 @@ state | string | 在第一步获得的唯一随机的的字符串
 ## Scopes
 
 Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_entries`
+* public, 获取用户的头像、昵称、邮箱、是否为付费用户等信息
+* forms, 获取用户所有表单信息、单个表单详情、表单当前状态（是否开启，填写权限，已收集数据量）
+* read_entries, 获取某表单下的数据信息，批量获取或单条获取，并且可基于查询条件获取想要的数据。
 
 ## Rate Limit
 
@@ -223,7 +226,7 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 
 需要Scope: `forms`
 
-    GET https://api.jinshuju.net/v4/forms/RygpW3/status
+    GET https://api.jinshuju.net/v4/forms/RygpW3/status?access_token=...
 
 ```json
 {
@@ -233,11 +236,146 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 }
 ```
 
+### 获取多条数据
+
+需要Scope： `read_entries`
+
+    GET https://api.jinshuju.net/v4/forms/RygpW3/entries?access_token=...
+
+```json
+    {
+    "entries": [
+        {
+            "serial_number": 53,
+            "field_2": "小金",
+            "field_3": "A公司",
+            "field_4": "FqFO",
+            "field_5": {
+                "value": "13555555555"
+            },
+            "field_6": "餐饮，教育",
+            "field_7": "xiaojin@jinshuju.net",
+            "field_8": "wWW3",
+            "field_9": "W2B0",
+            "created_at": "2016-01-29T03:38:20.032Z",
+            "updated_at": "2016-01-29T03:38:20.032Z",
+        },
+        {
+            "serial_number": 52,
+            "field_2": "小银",
+            "field_3": "B公司",
+            "field_4": "QW8U",
+            "field_5": {
+                "value": "13666666666"
+            },
+            "field_6": "教育，IT/互联网/计算机",
+            "field_7": "xiaoyin@jinshuju.net",
+            "field_8": "",
+            "field_9": "W2B0",
+            "creator_name": "user@mail.com",
+            "updater_name": "user@gmail.com",
+            "created_at": "2016-01-29T02:27:49.285Z",
+            "updated_at": "2016-01-29T02:57:17.691Z",
+            "info_remote_ip": "180.168.0.0",
+            "info_platform": "Macintosh",
+            "info_os": "OS X 10.11.2",
+            "info_browser": "Chrome 47.0.2526.106"
+        },
+        ...
+        {
+            "serial_number": 34,
+            "field_2": "小铜",
+            "field_3": "本地搜索",
+            "field_4": "FqFO",
+            "field_5": {
+                "value": "13777777777"
+            },
+            "field_6": "电子商务",
+            "field_7": "xiaotong@jinshuju.net",
+            "field_8": "DXls",
+            "field_9": "NvUZ",
+            "creator_name": "user@mail.com",
+            "updater_name": "user@gmail.com",
+            "created_at": "2016-01-29T02:27:49.285Z",
+            "updated_at": "2016-01-29T02:57:17.691Z",
+            "info_remote_ip": "180.168.0.0",
+            "info_platform": "Macintosh",
+            "info_os": "OS X 10.11.2",
+            "info_browser": "Chrome 47.0.2526.106"
+        }
+    ]
+}
+```
+
+#### 分页    
+
+获取表单数据时，默认单次获取的数据量(per_page)为20，会从最后提交的数据(cursor)开始往前获取，可参考下面参数来调整获取数据的数量和位置。
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token  | string | **必须**。通过oauth认证所得到的access_token
+per_page  | integer | 单次获取的数据量，默认20，最多支持到50
+cursor | integer | 每次获取数据的游标点，以第cursor条数据往前获取，默认是数据总量。
+
+例如从第40条数据往前获取30条的数据：
+
+    Get https://api.jinshuju.net/v4/forms/RygpW3/entries?access_token=...&per_page=30&cursor=40    
+
+批量获取数据信息时，在每一次请求的header里会有自定义的头部信息来指明本次获取的状态，如下表所示。
+
+Header Name  | Description
+------------- | -----------
+X-Total  | 符合条件的所有数据总数，例如X-Total:50
+X-Count  | 当前请求返回的数据数量，例如X-Count:20
+
+上一页下一页的信息会放置到Link Header里，例如
+```html
+Link:<https://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=...&cursor=2082>; rel="prev", 
+  <https://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=...&cursor=2061>; rel="next"
+```
+
+目前支持两种rel值：
+
+Rel  | Description
+----------- | ---------------
+next  | 下一页的列表访问地址
+prev  | 上一页的列表访问地址  
+
+### 数据查询
+
+查询数据，支持与现有数据列表查询类似的接口
+
+* 文本、单选、多选、下拉框、评分、商品、序号(serial_number)、扩展属性(x_field_1)
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1=xxx`
+*注：获取表单结构中暂无商品字段的item信息*
+*注：全匹配查询，不支持模糊查询*
+
+* 同一字段的多个条件取并集查询
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1[]=xxx&field_1[]=yyy`
+
+* 多个字段取交集查询
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1=xxx&field_2=yyy`
+
+* 矩阵单选查询
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1[<题目code>][]=<选项code>`
+
+* 二级下拉框查询
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1[<一级选项code>]=<二级选项code>`
+
+* 微信省市查询
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&x_field_weixin_province_city[陕西]=西安`
+
+* 数据提交时间查询
+指定日期：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at=2016-1-22`
+某一日期之后：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at[start]=2016-1-22`
+某一日期之前：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at[end]=2016-1-22`
+某个日期区间：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at[start]=2015-12-15&created_at[end]=2016-1-22`
+
 ### 获取单条数据
 
 需要Scope: `read_entries`
 
-    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_code=...
+    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
     
 JSON Load:
 
