@@ -24,10 +24,11 @@ v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**。你注册的金数据应用ID。目前并未开放
-redirect_uri  | string | **必须**。你应用的callback URI。当授权完成之后要转向的地址
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public`, `forms`, `read_entries`，默认为public
-state | string | 唯一随机的的字符串。这是用来防止跨站共计的。
+client_id  | string | **必须**，注册的金数据应用ID，目前并未开放注册。
+redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
+response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
+scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `forms` `read_entries`，默认为public。
+state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
 ### 2. 金数据转向到你的地址
 
@@ -41,11 +42,12 @@ state | string | 唯一随机的的字符串。这是用来防止跨站共计的
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**。你注册的金数据应用ID。目前并未开放
-client_secret  | string | **必须**。你注册的金数据应用的secret。目前并未开放。
-code  | string | **必须**。在第一步获得的code
-redirect_uri  | string | **必须**。你应用的callback URI。当授权完成之后要转向的地址
-state | string | 在第一步获得的唯一随机的的字符串
+client_id  | string | **必须**，注册的金数据应用ID，目前并未开放注册。
+client_secret  | string | **必须**，金数据应用的secret，目前并未开放注册。
+code  | string | **必须**，在第一步获得的code。
+redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
+grant_type | string | **必须**，指定为 `client_credentials`。 
+state | string | 在第一步使用的唯一随机的的字符串。
 
 
 
