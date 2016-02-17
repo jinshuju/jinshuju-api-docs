@@ -30,7 +30,7 @@ response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
 scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `forms` `read_entries`，默认为public。
 state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
-### 2. 金数据转向到你的地址
+### 2. 获得访问的access token
 
 用户同意之后，金数据将会转向到你的网站，并带上`code`和之前提供的`state`参数。如果state不匹配，你可以终止这个请求。
 
@@ -62,6 +62,34 @@ state | string | 在第一步使用的唯一随机的的字符串。
 }
 ````
 
+
+#### 使用refresh token获得新的access_token
+
+目前access_token有效期为7200秒,当access_token过期时，可以使用refresh_token来获得新的access_token。
+
+    POST https://account.jinshuju.net/oauth/token
+
+参数
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+client_id  | string | **必须**，注册的金数据应用ID，目前并未开放注册。
+client_secret  | string | **必须**，金数据应用的secret，目前并未开放注册。
+refresh_token  | string | **必须**，获取access_token时得到的refresh_token。
+grant_type | string | **必须**，指定为 `refresh_token`。 
+
+返回的response的形式如下，得到新的access_token 和refresh_token：
+````json
+{
+    "access_token": "0909a26c330883cf2cd44f8926c663ac1d639ed2940d879fb2bf4a62e06ff4a8",
+    "token_type": "bearer",
+    "expires_in": 7200,
+    "refresh_token": "648478764ff94d09d62f78c8fad8c2b7886ee93c59090ececacd6dfe1b648949",
+    "scope": "public forms read_entries",
+    "created_at": 1455710364
+}
+````
+
 ### 3. 使用access token访问API
 
     GET https://api.jinshuju.net/v4/forms?access_token=...
@@ -74,7 +102,6 @@ state | string | 在第一步使用的唯一随机的的字符串。
 
     curl -H "Authorization: bearer OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
 
-目前access_token有效期为7200秒。
 
 ## Redirect URL
 
