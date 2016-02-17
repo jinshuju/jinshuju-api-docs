@@ -19,7 +19,7 @@ v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议
 ### 1. 转向到金数据申请验证
 
     GET https://account.jinshuju.net/oauth/authorize
-  
+
 参数
 
 参数名称  | 类型  | 备注
@@ -34,10 +34,10 @@ state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
 用户同意之后，金数据将会转向到你的网站，并带上`code`和之前提供的`state`参数。如果state不匹配，你可以终止这个请求。
 
-拿到code之后，就可以交换access token: 
+拿到code之后，就可以交换access token:
 
     POST https://account.jinshuju.net/oauth/token
-    
+
 参数
 
 参数名称  | 类型  | 备注
@@ -49,12 +49,18 @@ redirect_uri  | string | **必须**，金数据应用的callback URI，当授权
 grant_type | string | **必须**，指定为 `client_credentials`。 
 state | string | 在第一步使用的唯一随机的的字符串。
 
-
-
 默认情况下，返回的response的形式如下：
 
-    access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&scope=user%2Cgist&token_type=bearer
-    
+````json
+{
+  "access_token": "e72e16c7e42f292c6912e7710c838347ae178b4a",
+  "token_type": "bearer",
+  "expires_in": 7200,
+  "scope": "public",
+  "created_at": 1455622532
+}
+````
+
 ### 3. 使用access token访问API
 
     GET https://api.jinshuju.net/v4/forms?access_token=...
@@ -62,13 +68,13 @@ state | string | 在第一步使用的唯一随机的的字符串。
 你可以把token放在URL中。也可以使用Authorization header如下：
 
     Authorization: token OAUTH-TOKEN
-  
+
 例如使用curl
-    
+
     curl -H "Authorization: token OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
-    
+
 目前access_token有效期为7200秒。
-    
+
 ## Redirect URL
 
 `redirect_uri`是必须的。如果你使用[omniauth-jinshuju](https://github.com/jinshuju/omniauth-jinshuju)，就可以使用类似于`https://domain.com/auth/jinshuju/callback`的地址。
@@ -86,7 +92,7 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 
     X-RateLimit-Limit:120
     X-RateLimit-Remaining:119
-    
+
 目前这个数值不可更改。
 
 ## API列表
@@ -96,8 +102,8 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 需要Scope: `forms`
 
     GET https://api.jinshuju.net/v4/forms?access_token=...
-    
-    
+
+
 ```json
 {
     "forms": [
@@ -200,9 +206,9 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
             "type": "single_line_text",
             "validations": {}
         },
-        
+
         ...
- 
+
     ],
     "id": "56977c973eec76796a000008",
     "name": "表单名称",
@@ -377,8 +383,8 @@ prev  | 上一页的列表访问地址
 
 需要Scope: `read_entries`
 
-    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
-    
+    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_code=...
+
 JSON Load:
 
 ```json
@@ -503,7 +509,7 @@ JSON Load:
 需要Scope: `public`或者默认
 
     GET https://api.jinshuju.net/v4/me
-    
+
 ```json
 {
   "email": "email@mail.com",
