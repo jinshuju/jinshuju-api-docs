@@ -383,7 +383,7 @@ prev  | 上一页的列表访问地址
 
 需要Scope: `read_entries`
 
-    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_code=...
+    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
 
 JSON Load:
 
@@ -508,7 +508,7 @@ JSON Load:
 
 需要Scope: `public`或者默认
 
-    GET https://api.jinshuju.net/v4/me
+    GET https://api.jinshuju.net/v4/me?access_token=...
 
 ```json
 {
