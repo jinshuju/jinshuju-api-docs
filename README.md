@@ -68,11 +68,11 @@ state | string | 在第一步使用的唯一随机的的字符串。
 
 你可以把token放在URL中。也可以使用Authorization header如下：
 
-    Authorization: token OAUTH-TOKEN
+    Authorization: bearer OAUTH-TOKEN
 
 例如使用curl
 
-    curl -H "Authorization: token OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
+    curl -H "Authorization: bearer OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
 
 目前access_token有效期为7200秒。
 
