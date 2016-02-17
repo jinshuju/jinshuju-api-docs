@@ -106,77 +106,48 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 
 
 ```json
-{
-    "forms": [
-        {
-            "created_at": "2016-01-14T12:52:32.644Z",
-            "description": null,
-            "entries_count": 0,
-            "id": "56979a103eec767979000000",
-            "name": "文件夹内的表单",
-            "setting": {
-                "app_notification_enabled": true,
-                "color": "#afa373",
-                "icon": "fontello-chart-outline",
-                "open_rule": "open",
-                "permission": "password",
-                "push_url": null,
-                "result_state": "closed",
-                "result_url": null,
-                "search_state": "closed",
-                "search_url": null
-            },
-            "shared": false,
-            "token": "RygpW3"
-        },
-        {
-            "created_at": "2016-01-14T10:46:47.168Z",
-            "description": "表单介绍在这里。\n\n表单介绍在这里。",
-            "entries_count": 1,
-            "id": "56977c973eec76796a000008",
-            "name": "第二个表单(很多字)",
-            "setting": {
-                "app_notification_enabled": true,
-                "color": "#8d7ea8",
-                "icon": "fontello-pencil",
-                "open_rule": "open",
-                "permission": "public",
-                "push_url": null,
-                "result_state": "closed",
-                "result_url": null,
-                "search_state": "closed",
-                "search_url": null
-            },
-            "shared": false,
-            "token": "0HYzQO"
-        },
-        {
-            "created_at": "2015-11-19T02:18:12.044Z",
-            "description": null,
-            "entries_count": 0,
-            "id": "564d31643eec76528e000002",
-            "name": "\u6a21\u72481",
-            "setting": {
-                "app_notification_enabled": true,
-                "color": "#49afcb",
-                "icon": "fontello-graduation-cap",
-                "open_rule": "open",
-                "permission": "public",
-                "push_url": null,
-                "result_state": "closed",
-                "result_url": null,
-                "search_state": "closed",
-                "search_url": null
-            },
-            "shared": false,
-            "token": "isE6zh"
+[
+    {
+        "id": "56c28b33c02f6713aa000092",
+        "token": "E2FBnj",
+        "name": "市场调查表",
+        "entries_count": 0,
+        "shared": false,
+        "description": "这是一个市场调查表",
+        "created_at": "2016-02-16T02:36:35.756Z",
+        "setting": {
+            "icon": "fontello-paper-plane",
+            "color": "#659199",
+            "open_rule": "open",
+            "permission": "public",
+            "result_state": "closed",
+            "result_url": null,
+            "search_state": "closed",
+            "search_url": null,
+            "push_url": null
         }
-    ],
-    "meta": {
-        "per_page": 20,
-        "total": 3
+    },
+    {
+        "id": "56b2f86ca3f5206d76000143",
+        "token": "TivBsE",
+        "name": "小金俱乐部活动报名",
+        "entries_count": 0,
+        "shared": false,
+        "description": "2016年小金俱乐部第一站来到了上海",
+        "created_at": "2016-02-04T07:06:20.559Z",
+        "setting": {
+            "icon": "fontello-pencil",
+            "color": "#659199",
+            "open_rule": "open",
+            "permission": "public",
+            "result_state": "closed",
+            "result_url": null,
+            "search_state": "closed",
+            "search_url": null,
+            "push_url": null
+        }
     }
-}
+]
 
 ```
 
@@ -188,47 +159,318 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 
 ```json
 {
-    "created_at": "2016-01-14T10:46:47.168Z",
-    "description": "表单描述",
-    "entries_count": 1,
+    "id": "56b2f86ca3f5206d76000143",
+    "token": "TivBsE",
+    "name": "小金俱乐部活动报名",
+    "entries_count": 0,
+    "shared": false,
+    "description": "2016年小金俱乐部第一站来到了上海，这一次我们把上海当成主场。如果你之前遗憾没有参加小金的北京发布会",
+    "created_at": "2016-02-04T07:06:20.559Z",
     "fields": [
         {
+            "type": "single_line_text",
+            "label": "姓名",
             "api_code": "field_1",
-            "label": null,
             "notes": "",
-            "type": "page_break"
+            "predefined_value": "",
+            "private": false,
+            "validations": {
+                "required": true
+            }
         },
         {
+            "type": "single_line_text",
+            "label": "公司、团队或者组织名称",
+            "api_code": "field_16",
+            "notes": "",
+            "predefined_value": "",
+            "private": false,
+            "validations": {}
+        },
+        {
+            "type": "single_choice",
+            "label": "称呼",
             "api_code": "field_2",
-            "label": "\u59d3\u540d",
             "notes": "",
             "predefined_value": null,
             "private": false,
+            "validations": {
+                "required": true
+            },
+            "choices": [
+                {
+                    "name": "先生",
+                    "value": "2jYk"
+                },
+                {
+                    "name": "女士",
+                    "value": "pIjs"
+                },
+                {
+                    "name": "保密",
+                    "value": "yofb"
+                }
+            ],
+            "allow_other": false
+        },
+        {
+            "type": "phone",
+            "label": "手机",
+            "api_code": "field_4",
+            "notes": "",
+            "predefined_value": "",
+            "private": false,
+            "validations": {
+                "required": true
+            }
+        },
+        {
+            "type": "multiple_choice",
+            "label": "您所在的行业",
+            "api_code": "field_3",
+            "notes": "",
+            "predefined_value": null,
+            "private": false,
+            "validations": {
+                "required": true
+            },
+            "choices": [
+                {
+                    "name": "餐饮",
+                    "value": "vXHU"
+                },
+                {
+                    "name": "娱乐",
+                    "value": "0yrs"
+                },
+                {
+                    "name": "教育",
+                    "value": "zI63"
+                },
+                {
+                    "name": "IT/互联网/计算机",
+                    "value": "uN9L"
+                },
+                {
+                    "name": "微信营销",
+                    "value": "0tKd"
+                },
+                {
+                    "name": "零售",
+                    "value": "1eS0"
+                },
+                {
+                    "name": "旅游",
+                    "value": "zFay"
+                },
+                {
+                    "name": "汽车",
+                    "value": "iYs5"
+                },
+                {
+                    "name": "金融",
+                    "value": "rmIa"
+                },
+                {
+                    "name": "房地产",
+                    "value": "KzHg"
+                },
+                {
+                    "name": "电子商务",
+                    "value": "yP93"
+                },
+                {
+                    "name": "家居",
+                    "value": "51UD"
+                },
+                {
+                    "name": "文化/媒体",
+                    "value": "Gdyw"
+                },
+                {
+                    "name": "服饰",
+                    "value": "e5dJ"
+                },
+                {
+                    "name": "医疗",
+                    "value": "0vZh"
+                },
+                {
+                    "name": "服务行业",
+                    "value": "etAf"
+                },
+                {
+                    "name": "学生",
+                    "value": "ArtE"
+                }
+            ],
+            "allow_other": true
+        },
+        {
+            "type": "email",
+            "label": "邮箱",
+            "api_code": "field_17",
+            "notes": "",
+            "predefined_value": null,
+            "private": false,
+            "validations": {
+                "required": true
+            }
+        },
+        {
+            "type": "multiple_choice",
+            "label": "此行目的",
+            "api_code": "field_5",
+            "notes": "<p>我们会与您分享金数据的行业使用情况，也欢迎您来与我们分享自己的使用体会</p>",
+            "predefined_value": null,
+            "private": false,
+            "validations": {},
+            "choices": [
+                {
+                    "name": "听听金数据官方的使用案例分享",
+                    "value": "7oLf"
+                },
+                {
+                    "name": "听听其他金数据用户的使用情况",
+                    "value": "vQki"
+                },
+                {
+                    "name": "分享我自己使用金数据的情况",
+                    "value": "6qHO"
+                },
+                {
+                    "name": "与其他金数据用户交流使用心得",
+                    "value": "MCkX"
+                }
+            ],
+            "allow_other": true
+        },
+        {
+            "type": "single_choice",
+            "label": "您是否愿意分享一个话题？",
+            "api_code": "field_10",
+            "notes": "<p>与现场观众分享金数据的使用体验，可能获得意想不到的商机，或者朋友</p>",
+            "predefined_value": null,
+            "private": false,
+            "validations": {},
+            "choices": [
+                {
+                    "name": "是，我想与其他人分享",
+                    "value": "1lq3"
+                },
+                {
+                    "name": "不是，我更乐意当听众",
+                    "value": "J2RP"
+                }
+            ],
+            "allow_other": false
+        },
+        {
             "type": "single_line_text",
+            "label": "话题名称",
+            "api_code": "field_11",
+            "notes": "<p>我们与您联系并且通知您是否通过审核（您可能会接到来自金数据的电话）</p>",
+            "predefined_value": "",
+            "private": false,
+            "validations": {
+                "required": true
+            }
+        },
+        {
+            "type": "paragraph_text",
+            "label": "话题简介",
+            "api_code": "field_12",
+            "notes": "<p>亲爱的，如果你想要在活动上分享，我们希望你的话题是精心准备的，所以请告诉我们话题简介吧。</p>",
+            "predefined_value": "",
+            "private": false,
+            "validations": {
+                "required": true
+            }
+        },
+        {
+            "type": "paragraph_text",
+            "label": "对于这次活动，您有什么想要问我们的？",
+            "api_code": "field_6",
+            "notes": "",
+            "predefined_value": "",
+            "private": false,
             "validations": {}
         },
-
-        ...
-
+        {
+            "type": "drop_down",
+            "label": "是否已经联系",
+            "api_code": "field_7",
+            "notes": "",
+            "predefined_value": null,
+            "private": true,
+            "validations": {},
+            "choices": [
+                {
+                    "name": "是",
+                    "value": "SoG1"
+                },
+                {
+                    "name": "否",
+                    "value": "iyh7"
+                },
+                {
+                    "name": "没打通",
+                    "value": "9m1q"
+                }
+            ],
+            "allow_other": false
+        },
+        {
+            "type": "paragraph_text",
+            "label": "联系情况",
+            "api_code": "field_8",
+            "notes": "",
+            "predefined_value": "1. 能否参加\n2. 哪个公司？\n3. 金数据的使用情况",
+            "private": true,
+            "validations": {}
+        },
+        {
+            "type": "single_choice",
+            "label": "签到",
+            "api_code": "field_15",
+            "notes": "",
+            "predefined_value": null,
+            "private": true,
+            "validations": {},
+            "choices": [
+                {
+                    "name": "是 ",
+                    "value": "303X"
+                },
+                {
+                    "name": "否",
+                    "value": "2Y8V"
+                }
+            ],
+            "allow_other": false
+        },
+        {
+            "type": "paragraph_text",
+            "label": "备注",
+            "api_code": "field_18",
+            "notes": "",
+            "predefined_value": "",
+            "private": true,
+            "validations": {}
+        }
     ],
-    "id": "56977c973eec76796a000008",
-    "name": "表单名称",
     "setting": {
-        "app_notification_enabled": true,
-        "color": "#8d7ea8",
         "icon": "fontello-pencil",
+        "color": "#659199",
         "open_rule": "open",
         "permission": "public",
-        "push_url": null,
         "result_state": "closed",
         "result_url": null,
         "search_state": "closed",
-        "search_url": null
-    },
-    "shared": false,
-    "token": "0HYzQO"
+        "search_url": null,
+        "push_url": null
+    }
 }
-
 ```
 
 ### 获取表单当前状态
@@ -239,9 +481,9 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 
 ```json
 {
-  "is_open": true,
-  "permission": "public",
-  "entries_count": 1
+    "is_open": true,
+    "permission": "public",
+    "entries_count": 60
 }
 ```
 
@@ -252,68 +494,43 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
     GET https://api.jinshuju.net/v4/forms/RygpW3/entries?access_token=...
 
 ```json
+[
     {
-    "entries": [
-        {
-            "serial_number": 53,
-            "field_2": "小金",
-            "field_3": "A公司",
-            "field_4": "FqFO",
-            "field_5": {
-                "value": "13555555555"
-            },
-            "field_6": "餐饮，教育",
-            "field_7": "xiaojin@jinshuju.net",
-            "field_8": "wWW3",
-            "field_9": "W2B0",
-            "created_at": "2016-01-29T03:38:20.032Z",
-            "updated_at": "2016-01-29T03:38:20.032Z",
+        "serial_number": 1,
+        "field_1": "小金",
+        "field_16": "金数据",
+        "field_2": "2jYk",
+        "field_4": {
+            "value": "18629058968",
+            "verified": true
         },
-        {
-            "serial_number": 52,
-            "field_2": "小银",
-            "field_3": "B公司",
-            "field_4": "QW8U",
-            "field_5": {
-                "value": "13666666666"
-            },
-            "field_6": "教育，IT/互联网/计算机",
-            "field_7": "xiaoyin@jinshuju.net",
-            "field_8": "",
-            "field_9": "W2B0",
-            "creator_name": "user@mail.com",
-            "updater_name": "user@gmail.com",
-            "created_at": "2016-01-29T02:27:49.285Z",
-            "updated_at": "2016-01-29T02:57:17.691Z",
-            "info_remote_ip": "180.168.0.0",
-            "info_platform": "Macintosh",
-            "info_os": "OS X 10.11.2",
-            "info_browser": "Chrome 47.0.2526.106"
-        },
-        ...
-        {
-            "serial_number": 34,
-            "field_2": "小铜",
-            "field_3": "本地搜索",
-            "field_4": "FqFO",
-            "field_5": {
-                "value": "13777777777"
-            },
-            "field_6": "电子商务",
-            "field_7": "xiaotong@jinshuju.net",
-            "field_8": "DXls",
-            "field_9": "NvUZ",
-            "creator_name": "user@mail.com",
-            "updater_name": "user@gmail.com",
-            "created_at": "2016-01-29T02:27:49.285Z",
-            "updated_at": "2016-01-29T02:57:17.691Z",
-            "info_remote_ip": "180.168.0.0",
-            "info_platform": "Macintosh",
-            "info_os": "OS X 10.11.2",
-            "info_browser": "Chrome 47.0.2526.106"
-        }
-    ]
-}
+        "field_3": [
+            "zI63",
+            "uN9L"
+        ],
+        "field_17": "roody@jinshuju.net",
+        "field_5": [
+            "7oLf",
+            "vQki"
+        ],
+        "field_10": "1lq3",
+        "field_11": "小金的应用场景",
+        "field_12": "金数据在各行各业的用法",
+        "field_6": "金数据有没有一些更加高级的技巧呢？",
+        "field_7": "",
+        "field_8": "1. 能否参加\n2. 哪个公司？\n3. 金数据的使用情况",
+        "field_15": "",
+        "field_18": "",
+        "creator_name": "o王琰o",
+        "updater_name": "",
+        "created_at": "2016-02-17T11:40:31.524Z",
+        "updated_at": "2016-02-17T11:40:31.524Z",
+        "info_remote_ip": "123.139.21.4",
+        "info_platform": "Macintosh",
+        "info_os": "OS X 10.11.3",
+        "info_browser": "Chrome 48.0.2564.109"
+    }
+]
 ```
 
 #### 分页    
@@ -390,118 +607,39 @@ JSON Load:
 
 ```json
 {
-  "serial_number": 1,
-  "total_price": 0,
-  "field_2": "姓名",
-  "field_3": "email@domain.com",
-  "field_4": {
-    "value": "18899029392"
+    "serial_number": 1,
+    "field_1": "小金",
+    "field_16": "金数据",
+    "field_2": "2jYk",
+    "field_4": {
+        "value": "18629058968",
+        "verified": true
     },
-  "field_5": "020-99887727",
-  "field_6": {
-    "province": "天津市",
-    "city": "天津市",
-    "district": "北辰区",
-    "street": "天津地址"
-    },
-  "field_7": {
-    "latitude": "31.233293",
-    "longitude": "121.39189",
-    "address": "上海市普陀区长征镇天地软件园"
-    },
-  "field_8": "bGKQ",
-  "field_9": [
-    "ER0Q",
-    "LJHY"
+    "field_3": [
+        "zI63",
+        "uN9L"
     ],
-  "field_10": "TKs8",
-  "field_11": [
-    {
-      "statement": "YoJ2",
-      "choice": "zQZ9"
-    },
-    {
-      "statement": "NUPN",
-      "choice": "rz8G"
-    },
-    {
-      "statement": "iCSI",
-      "choice": "rz8G"
-    }
+    "field_17": "roody@jinshuju.net",
+    "field_5": [
+        "7oLf",
+        "vQki"
     ],
-  "field_12": [
-    {
-      "statement": "JKzL",
-      "dimensions": {
-        "7u4Z": "矩阵1_1",
-        "mvA5": "矩阵1_2",
-        "1Nrk": "矩阵1_3"
-      }
-    },
-    {
-      "statement": "341l",
-      "dimensions": {
-        "7u4Z": "矩阵2_1",
-        "mvA5": "矩阵2_2",
-        "1Nrk": "矩阵2_3"
-        }
-      },
-    {
-      "statement": "E7xN",
-      "dimensions": {
-      "7u4Z": "矩阵3_1",
-      "mvA5": "矩阵3_2",
-      "1Nrk": "矩阵3_3"
-      }
-    }
-    ],
-  "field_13": 123232,
-  "field_14": {
-    "hour": 1,
-    "minute": 3
-    },
-  "field_15": "2016-01-16",
-  "field_16": "k9gK",
-  "field_19": "https://jinshuju.net",
-  "field_20": 2,
-  "field_21": {
-    "level_1": "b8Kk",
-    "level_2": "tuD9"
-    },
-  "field_22": [
-    {
-      "name": "1_22_pricing.pdf",
-      "url": "https://fileurl"
-    }
-    ],
-    "field_23": [
-    {
-      "item": "56977c853eec76796f000001",
-      "number": 1
-    }
-    ],
-    "field_24": [
-    {
-      "item": "56977c973eec76796a000049",
-      "number": 2
-    },
-    {
-      "item": "56977c973eec76796a00004a",
-      "number": 2
-    },
-    {
-      "item": "56977c973eec76796a00004b",
-      "number": 3
-    }
-  ],
-  "creator_name": "user@mail.com",
-  "updater_name": "user@gmail.com",
-  "created_at": "2016-01-15T02:27:49.285Z",
-  "updated_at": "2016-01-15T02:57:17.691Z",
-  "info_remote_ip": "180.168.0.0",
-  "info_platform": "Macintosh",
-  "info_os": "OS X 10.11.2",
-  "info_browser": "Chrome 47.0.2526.106"
+    "field_10": "1lq3",
+    "field_11": "小金的应用场景",
+    "field_12": "金数据在各行各业的用法",
+    "field_6": "金数据有没有一些更加高级的技巧呢？",
+    "field_7": "",
+    "field_8": "1. 能否参加\n2. 哪个公司？\n3. 金数据的使用情况",
+    "field_15": "",
+    "field_18": "",
+    "creator_name": "o王琰o",
+    "updater_name": "",
+    "created_at": "2016-02-17T11:40:31.524Z",
+    "updated_at": "2016-02-17T11:40:31.524Z",
+    "info_remote_ip": "123.139.21.4",
+    "info_platform": "Macintosh",
+    "info_os": "OS X 10.11.3",
+    "info_browser": "Chrome 48.0.2564.109"
 }
 ```
 
@@ -515,7 +653,7 @@ JSON Load:
 {
   "email": "email@mail.com",
   "nickname": "email@mail.com",
-  "avatar": null,
+  "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
   "paid": false
 }
 ```
