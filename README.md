@@ -46,18 +46,19 @@ client_id  | string | **必须**，注册的金数据应用ID，目前并未开�
 client_secret  | string | **必须**，金数据应用的secret，目前并未开放注册。
 code  | string | **必须**，在第一步获得的code。
 redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-grant_type | string | **必须**，指定为 `client_credentials`。 
+grant_type | string | **必须**，指定为 `authorization_code`。 
 state | string | 在第一步使用的唯一随机的的字符串。
 
 默认情况下，返回的response的形式如下：
 
 ````json
 {
-  "access_token": "e72e16c7e42f292c6912e7710c838347ae178b4a",
-  "token_type": "bearer",
-  "expires_in": 7200,
-  "scope": "public",
-  "created_at": 1455622532
+    "access_token": "2994eec8c8b19c2a2103ae2a335dc781220bb701d4c2c7d1b4cc7c629353f8a4",
+    "token_type": "bearer",
+    "expires_in": 7200,
+    "refresh_token": "a563ed398b919388bc2e87b29f8d3b6e42a1195cdc1d9e36c6e9bcaa153bc6d3",
+    "scope": "public forms read_entries",
+    "created_at": 1455680792
 }
 ````
 
