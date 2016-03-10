@@ -109,10 +109,12 @@ grant_type | string | **必须**，指定为 `refresh_token`。
 
 ## Scopes
 
-Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_entries`
+Scope定义了资源范围。目前支持四个：`public`、`forms`、`read_entries`、`form_setting`
 * public, 获取用户的头像、昵称、邮箱、是否为付费用户等信息
 * forms, 获取用户所有表单信息、单个表单详情、表单当前状态（是否开启，填写权限，已收集数据量）
 * read_entries, 获取某表单下的数据信息，批量获取或单条获取，并且可基于查询条件获取想要的数据。
+* form_setting, 获取、更新表单的设置。
+
 
 ## Rate Limit
 
@@ -124,6 +126,21 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 目前这个数值不可更改。
 
 ## API列表
+
+### 获取当前用户基本信息
+
+需要Scope: `public`或者默认
+
+    GET https://api.jinshuju.net/v4/me?access_token=...
+
+```json
+{
+  "email": "email@mail.com",
+  "nickname": "email@mail.com",
+  "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
+  "paid": false
+}
+```
 
 ### 获取表单列表
 
@@ -669,18 +686,39 @@ JSON Load:
     "info_browser": "Chrome 48.0.2564.109"
 }
 ```
+### 获取、更新表单设置
 
-### 获取当前用户基本信息
+需要Scope: `form_setting`
 
-需要Scope: `public`或者默认
+#### 获取表单设置
+    
+    get https://api.jinshuju.net/v4/forms/RygpW3/setting?access_token=...
 
-    GET https://api.jinshuju.net/v4/me?access_token=...
-
+Json Load:
 ```json
 {
-  "email": "email@mail.com",
-  "nickname": "email@mail.com",
-  "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
-  "paid": false
+    "icon": "fontello-sound",
+    "color": "#afa373",
+    "open_rule": "open",
+    "permission": "public",
+    "result_state": "closed",
+    "result_url": null,
+    "search_state": "closed",
+    "search_url": null,
+    "push_url": null,
+    "success_redirect_url": "https://baidu.com",
+    "success_redirect_fields": [
+        "field_2",
+        "field_1"
+    ]
 }
 ```
+#### 更新表单设置
+    
+    put https://api.jinshuju.net/v4/forms/RygpW3/setting
+    
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token	| string | **必须**,通过oauth认证所得到的access_token
+success_redirect_url | string | 提交成功后的跳转网址
+success_redirect_fields | string | 提交成功后的跳转网址附加字段参数，以及提交给该字段的信息，最多三个参数，多个参数以空格分隔，如"serial_number x_field_1"，超过三个参数会回应报错信息。参数必须为表单里字段，会自动过滤非表单字段，目前支持：序号、单/多行文本、单选、多选、数字、邮箱、电话、日期以及网址等字段。如果表单中包含商品字段，则还可以附带序号和总价。可参考 https://help.jinshuju.net/articles/redirect-with-params.html 
