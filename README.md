@@ -114,14 +114,40 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
 * forms, 获取用户所有表单信息、单个表单详情、表单当前状态（是否开启，填写权限，已收集数据量）
 * read_entries, 获取某表单下的数据信息，批量获取或单条获取，并且可基于查询条件获取想要的数据。
 
-## Rate Limit
+## 访问限制
 
 每个用户每小时调用120次。HTTP Header中会留下相应的信息。
 
     X-RateLimit-Limit:120
     X-RateLimit-Remaining:119
 
-目前这个数值不可更改。
+目前这个数值不可更改，如有更高需求，请联系我们。
+
+## 分页
+
+当请求返回多个条目时，如表单列表、数据列表时，默认每次(per_page)返回20个条目，可以设定per_page参数来单次获得更多的数据，但目前最多支持50条。
+
+例如：
+
+    GET https://api.jinshuju.net/v4/forms?access_token=...&per_page=50
+
+在每一次请求返回的header里会包含分页信息，如下表所示：
+
+Header Name  | Description
+------------- | -----------
+X-Total  | 符合条件的总数，例如X-Total:50
+X-Count  | 当前请求返回的数量，例如X-Count:20
+Link  | 包含上一页(prev)或下一页(next)的访问地址，rel目前仅支持next和prev。
+
+例如获取表单列表时，request header里会返回如下：
+```html
+Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="prev", 
+  <https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="next"
+```
+
+在发出第一次请求后，不断的检查返回的Link Header里的next列表，如果存在则直接使用链接去获取，不存在则代表批量获取完成。
+
+注意：Link Header里链接中的cursor仅用于金数据系统内的查询起始点，不同的请求代表不同的含义,请不要修改该数值。
 
 ## API列表
 
@@ -559,40 +585,6 @@ Scope定义了资源范围。目前支持三个：`public`、`forms`、`read_ent
     }
 ]
 ```
-
-#### 分页    
-
-获取表单数据时，默认单次获取的数据量(per_page)为20，会从最后提交的数据(cursor)开始往前获取，可参考下面参数来调整获取数据的数量和位置。
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-access_token  | string | **必须**。通过oauth认证所得到的access_token
-per_page  | integer | 单次获取的数据量，默认20，最多支持到50
-cursor | integer | 每次获取数据的游标点，以第cursor条数据往前获取，默认是数据总量。
-
-例如从第40条数据往前获取30条的数据：
-
-    Get https://api.jinshuju.net/v4/forms/RygpW3/entries?access_token=...&per_page=30&cursor=40    
-
-批量获取数据信息时，在每一次请求的header里会有自定义的头部信息来指明本次获取的状态，如下表所示。
-
-Header Name  | Description
-------------- | -----------
-X-Total  | 符合条件的所有数据总数，例如X-Total:50
-X-Count  | 当前请求返回的数据数量，例如X-Count:20
-
-上一页下一页的信息会放置到Link Header里，例如
-```html
-Link:<https://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=...&cursor=2082>; rel="prev", 
-  <https://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=...&cursor=2061>; rel="next"
-```
-
-目前支持两种rel值：
-
-Rel  | Description
------------ | ---------------
-next  | 下一页的列表访问地址
-prev  | 上一页的列表访问地址  
 
 ### 数据查询
 
