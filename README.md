@@ -147,9 +147,9 @@ Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxx
   <https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="next"
 ```
 
-在发出第一次请求后，不断的检查返回的Link Header里的next列表，如果存在则直接使用链接去获取，不存在则代表批量获取完成。
+在发出第一次查询请求后，不断的检查返回的Link Header里的next列表，如果存在则直接使用链接去获取，不存在则代表批量获取完成。
 
-注意：Link Header里链接中的cursor仅用于金数据系统内的查询起始点，不同的请求代表不同的含义,请不要修改该数值。
+链接中的cursor是查询的游标，在访问不同的api时，含义不同。查询表单列表时，代表下一次要取的表单的id；查询数据列表时，代表下一次要取的数据的序号，数据序号是一个递增的整数，由于存在数据删除的情况，所以可能是不连贯的，不建议采用分页数值和序号来拼cursor值。
 
 ## API列表
 
@@ -185,6 +185,7 @@ Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxx
         "shared": false,
         "description": "这是一个市场调查表",
         "created_at": "2016-02-16T02:36:35.756Z",
+        "updated_at": "2016-02-16T02:37:35.756Z",
         "setting": {
             "icon": "fontello-paper-plane",
             "color": "#659199",
@@ -205,6 +206,7 @@ Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxx
         "shared": false,
         "description": "2016年小金俱乐部第一站来到了上海",
         "created_at": "2016-02-04T07:06:20.559Z",
+        "created_at": "2016-02-04T07:09:20.559Z",
         "setting": {
             "icon": "fontello-pencil",
             "color": "#659199",
@@ -236,6 +238,7 @@ Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxx
     "shared": false,
     "description": "2016年小金俱乐部第一站来到了上海，这一次我们把上海当成主场。如果你之前遗憾没有参加小金的北京发布会",
     "created_at": "2016-02-04T07:06:20.559Z",
+    "updated_at": "2016-02-04T07:10:20.559Z",
     "fields": [
         {
             "type": "single_line_text",
