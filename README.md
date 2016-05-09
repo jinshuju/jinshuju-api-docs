@@ -27,7 +27,7 @@ v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议
 client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
 redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
 response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `forms` `read_entries`，`form_setting`默认为public。
+scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `forms` `read_entries` `form_setting`，默认为public。
 state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
 ### 2. 获得访问的access token
