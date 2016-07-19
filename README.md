@@ -165,9 +165,19 @@ Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxx
   "email": "email@mail.com",
   "nickname": "email@mail.com",
   "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
-  "paid": false
+  "paid": false,
+  "uid": "fk3a9EvKTu3KKmTqa2CisQ"
 }
 ```
+
+参数名  | 类型 | 参数说明
+------------- | ----------- | ---------
+email  | String  | 用户邮箱地址，全局唯一
+nickname  |  String  | 用户昵称
+avatar  |  String  | 头像地址
+paid  |  Boolean  | 是否为付费用户
+uid  |  String  |  用户id
+
 
 ### 获取表单列表
 
