@@ -651,7 +651,7 @@ uid  |  String  |  用户id
 
 需要Scope: `read_entries`
 
-    POST https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
+    GET https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
 
 JSON Load:
 
