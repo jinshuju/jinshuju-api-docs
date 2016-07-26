@@ -729,4 +729,4 @@ access_token	| string | **必须**,通过oauth认证所得到的access_token
 success_redirect_url | string | 提交成功后的跳转网址
 success_redirect_fields | string | 提交成功后的跳转网址附加字段参数，以及提交给该字段的信息，最多三个参数，多个参数以空格分隔，如"serial_number x_field_1"，超过三个参数会回应报错信息。参数必须为表单里字段，会自动过滤非表单字段，目前支持：序号、单/多行文本、单选、多选、数字、邮箱、电话、日期以及网址等字段。如果表单中包含商品字段，则还可以附带序号和总价。可参考 https://help.jinshuju.net/articles/redirect-with-params.html 
 push_url | string | 数据以JSON格式推送的网址，使用请参考https://help.jinshuju.net/articles/http-push
-publish_form_embed_js | string | 设置官方应用中心嵌入到金数据发布表单页面的script标签例如`<script src='http://host/embed?$1'></script>`, 其中**$1**用于参数的占位
+publish_form_embed_js | string | 设置官方应用中心嵌入到金数据发布表单页面的js
