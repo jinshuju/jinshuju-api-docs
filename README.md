@@ -109,7 +109,7 @@ grant_type | string | **必须**，指定为 `refresh_token`。
 
 ## Scopes
 
-Scope定义了资源范围。目前支持四个：`public`、`forms`、`read_entries`、`form_setting`
+Scope定义了资源范围。目前支持五个：`public`、`profile`、`forms`、`read_entries`、`form_setting`
 * public, 获取用户的头像、昵称、邮箱、是否为付费用户等信息（**邮箱、是否付费将会在后面的版本中移除，如需要，请使用profile scope**）
 * profile, 获取用户的账户信息，邮箱、是否为付费用户（只读）、自定义域名（只读）
 * forms, 获取用户所有表单信息、单个表单详情、表单当前状态（是否开启，填写权限，已收集数据量）
