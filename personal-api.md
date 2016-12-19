@@ -1,26 +1,24 @@
-# 金数据API文档
+# 金数据API文档 (个人版)
 
 金数据API使用OAuth 2标准进行用户验证。
 
 
 ## 发送请求
 
-所有的URL需要以`https://api.jinshuju.com/v4/`开头。仅支持SSL。目前API版本为`v4`版本。例如，想获得当前用户的基本信息情况：
+所有的URL需要以`https://api.jinshuju.net/v4/`开头。仅支持SSL。目前API版本为`v4`版本。例如，想获得当前用户的基本信息情况：
 
-    curl https://api.jinshuju.com/v4/me?access_token=...
+    curl https://api.jinshuju.net/v4/me?access_token=...
 
 ## OAuth 2验证
 
 v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议进行访问。相关URL如下：
 
-* 认证域: `https://account.jinshuju.com`
-* 接口域: `https://api.jinshuju.com/v4`
+* 认证域: https://account.jinshuju.net
+* 接口域: https://api.jinshuju.net/v4
 
 ### 1. 转向到金数据申请验证
 
-### 1.1 转向到金数据申请企业中用户的验证
-
-    GET https://account.jinshuju.com/oauth/authorize
+    GET https://account.jinshuju.net/oauth/authorize
 
 参数
 
@@ -32,29 +30,13 @@ response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
 scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `profile` `forms` `read_entries` `form_setting`，默认为public。
 state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
-### 1.2 转向到金数据申请企业的验证
-
-    GET https://account.jinshuju.com/org_oauth/authorize
-
-参数
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
-redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `profile` `forms` `read_entries` `form_setting` `users`，默认为public。
-state | string | 唯一随机的的字符串，用来防止跨站攻击。
-
 ### 2. 获得访问的access token
-
-###2.1 获取用户访问的access token
 
 用户同意之后，金数据将会转向到你的网站，并带上`code`和之前提供的`state`参数。如果state不匹配，你可以终止这个请求。
 
 拿到code之后，就可以交换access token:
 
-    POST https://account.jinshuju.com/oauth/token
+    POST https://account.jinshuju.net/oauth/token
 
 参数
 
@@ -62,9 +44,9 @@ state | string | 唯一随机的的字符串，用来防止跨站攻击。
 ------------- | ------------- | -----------
 client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
 client_secret  | string | **必须**，金数据应用的secret。
-code  | string | **必须**，在1.1中获得的用户code。
+code  | string | **必须**，在第一步获得的code。
 redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-grant_type | string | **必须**，指定为 `authorization_code`。 
+grant_type | string | **必须**，指定为 `authorization_code`。
 state | string | 在第一步使用的唯一随机的的字符串。
 
 默认情况下，返回的response的形式如下：
@@ -81,46 +63,11 @@ state | string | 在第一步使用的唯一随机的的字符串。
 ````
 
 
-###2.2 获取企业访问的access token
-
-企业同意之后，金数据将会转向到你的网站，并带上`code`和之前提供的`state`参数。如果state不匹配，你可以终止这个请求。
-
-拿到code之后，就可以交换access token:
-
-    POST https://account.jinshuju.com/org_oauth/token
-
-参数
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
-client_secret  | string | **必须**，金数据应用的secret。
-code  | string | **必须**，在1.2中获得的企业code。
-redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-grant_type | string | **必须**，指定为 `authorization_code`。 
-state | string | 在第一步使用的唯一随机的的字符串。
-
-默认情况下，返回的response的形式如下：
-
-````json
-{
-    "access_token": "2994eec8c8b19c2a2103ae2a335dc781220bb701d4c2c7d1b4cc7c629353f8a4",
-    "token_type": "bearer",
-    "expires_in": 7200,
-    "refresh_token": "a563ed398b919388bc2e87b29f8d3b6e42a1195cdc1d9e36c6e9bcaa153bc6d3",
-    "scope": "public forms read_entries",
-    "created_at": 1455680792
-}
-````
-
-
-### 2.3 使用refresh token获得新的access_token
+#### 使用refresh token获得新的access_token
 
 目前access_token有效期为7200秒,当access_token过期时，可以使用refresh_token来获得新的access_token。
 
-#### 刷新用户的access_token:
-
-    POST https://account.jinshuju.com/oauth/token
+    POST https://account.jinshuju.net/oauth/token
 
 参数
 
@@ -128,8 +75,8 @@ state | string | 在第一步使用的唯一随机的的字符串。
 ------------- | ------------- | -----------
 client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放
 client_secret  | string | **必须**，金数据应用的secret
-refresh_token  | string | **必须**，在2.1中获取access_token时得到的refresh_token。
-grant_type | string | **必须**，指定为 `refresh_token`。 
+refresh_token  | string | **必须**，获取access_token时得到的refresh_token。
+grant_type | string | **必须**，指定为 `refresh_token`。
 
 返回的response的形式如下，得到新的access_token 和refresh_token：
 ````json
@@ -142,36 +89,10 @@ grant_type | string | **必须**，指定为 `refresh_token`。
     "created_at": 1455710364
 }
 ````
-
-#### 刷新企业的access_token:
-
-    POST https://account.jinshuju.com/org_oauth/token
-
-参数
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放
-client_secret  | string | **必须**，金数据应用的secret
-refresh_token  | string | **必须**，在2.2中获取access_token时得到的refresh_token。
-grant_type | string | **必须**，指定为 `refresh_token`。 
-
-返回的response的形式如下，得到新的access_token 和refresh_token：
-````json
-{
-    "access_token": "0909a26c330883cf2cd44f8926c663ac1d639ed2940d879fb2bf4a62e06ff4a8",
-    "token_type": "bearer",
-    "expires_in": 7200,
-    "refresh_token": "648478764ff94d09d62f78c8fad8c2b7886ee93c59090ececacd6dfe1b648949",
-    "scope": "public forms read_entries",
-    "created_at": 1455710364
-}
-````
-
 
 ### 3. 使用access token访问API
 
-    GET https://api.jinshuju.com/v4/forms?access_token=...
+    GET https://api.jinshuju.net/v4/forms?access_token=...
 
 你可以把token放在URL中。也可以使用Authorization header如下：
 
@@ -179,7 +100,7 @@ grant_type | string | **必须**，指定为 `refresh_token`。
 
 例如使用curl
 
-    curl -H "Authorization: bearer OAUTH-TOKEN" https://api.jinshuju.com/v4/forms
+    curl -H "Authorization: bearer OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
 
 
 ## Redirect URL
@@ -188,23 +109,23 @@ grant_type | string | **必须**，指定为 `refresh_token`。
 
 ## Scopes
 
-Scope定义了资源范围。目前支持六个：`public`、`profile`、`forms`、`read_entries`、`form_setting`、`users`
+Scope定义了资源范围。目前支持五个：`public`、`profile`、`forms`、`read_entries`、`form_setting`
 * public, 获取用户的头像、昵称、邮箱、是否为付费用户等信息（**邮箱、是否付费将会在后面的版本中移除，如需要，请使用profile scope**）
 * profile, 获取用户的账户信息，邮箱、是否为付费用户（只读）、自定义域名（只读）
 * forms, 获取用户所有表单信息、单个表单详情、表单当前状态（是否开启，填写权限，已收集数据量）
 * read_entries, 获取某表单下的数据信息，批量获取或单条获取，并且可基于查询条件获取想要的数据
 * form_setting, 获取、更新表单的设置
-* users， 获取企业中的用户列表
 
 
 ## 访问限制
-访问API是基于金数据授权的用户来做频率限制的，目前企业基础版每个企业500次/小时，企业高级版每个企业1000次/小时，企业旗舰版每个企业2000次/小时，企业合作版每个企业5000次/小时，如需更多可联系金数据扩充。
+访问API是基于金数据授权的用户来做频率限制的，目前免费用户120次/小时，专业版用户300次/小时，企业版用户500次/小时。
 
 HTTP Header中会留下相应的信息。
 
     X-RateLimit-Limit:120
     X-RateLimit-Remaining:119
 
+如果用户有特别高的访问频率需求，可以联系我们。
 
 ## 分页
 
@@ -212,7 +133,7 @@ HTTP Header中会留下相应的信息。
 
 例如：
 
-    GET https://api.jinshuju.com/v4/forms?access_token=...&per_page=50
+    GET https://api.jinshuju.net/v4/forms?access_token=...&per_page=50
 
 在每一次请求返回的header里会包含分页信息，如下表所示：
 
@@ -224,49 +145,66 @@ Link  | 包含上一页(prev)或下一页(next)的访问地址，rel目前仅支
 
 例如获取表单列表时，request header里会返回如下：
 ```html
-Link:<https://api.jinshuju.com/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="prev", 
-  <https://api.jinshuju.com/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="next"
+Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="prev",
+  <https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="next"
 ```
 
 在发出第一次查询请求后，不断的检查返回的Link Header里的next列表，如果存在则直接使用链接去获取，不存在则代表批量获取完成。
 
 链接中的cursor是查询的游标，在访问不同的api时，含义不同。查询表单列表时，代表下一次要取的表单的id；查询数据列表时，代表下一次要取的数据的序号，数据序号是一个递增的整数，由于存在数据删除的情况，所以可能是不连贯的，不建议采用分页数值和序号来拼cursor值。
 
+## API列表
 
-### 获取企业中用户列表
-注意：这里的access_token是在2.2中获取的企业访问access_token
+### 获取当前用户基本信息
 
-需要Scope: `users`
-    
-    get https://api.jinshuju.com/v4/users?access_token=...
+需要Scope: `public`或者默认
 
-Json Load:
+    GET https://api.jinshuju.net/v4/me?access_token=...
+
 ```json
 {
-    "openid": "ab32c5dd-0d12-5498-afe7-6d109436d9b5",
-    "name": "张三",
-    "email": "zhang@gmail.com",
-    "mobile": "18000000000",
-    "role": "admin",
-    "status": "active",
-    "avatar": null,
-    "forms_count": 0,
-    "entries_count": 0
-},
+  "email": "email@mail.com",
+  "nickname": "email@mail.com",
+  "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
+  "paid": false,
+  "uid": "fk3a9EvKTu3KKmTqa2CisQ"
+}
 ```
+
+参数名  | 类型 | 参数说明
+------------- | ----------- | ---------
+email  | String  | 用户邮箱地址，全局唯一
+nickname  |  String  | 用户昵称
+avatar  |  String  | 头像地址
+paid  |  Boolean  | 是否为付费用户
+uid  |  String  |  用户id
+
+### 获取当前用户账户信息
+
+需要Scope: `profile`
+
+    GET https://api.jinshuju.net/v4/profile?access_token=...
+
+```json
+{
+  "email": "email@mail.com",
+  "paid": false,
+  "custom_domain": 'forms.example.com'
+}
+```
+
+参数名  | 类型 | 参数说明
+------------- | ----------- | ---------
+email  | String  | 用户邮箱地址，全局唯一
+paid  |  Boolean  | 是否为付费用户
+custom_domain | String | 自定义域名信息，该功能可用时返回用户在个人中心设置的值，否则为空
 
 ### 获取表单列表
 
 需要Scope: `forms`
 
-    GET https://api.jinshuju.com/v4/forms
+    GET https://api.jinshuju.net/v4/forms?access_token=...
 
-参数
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-access_token  | string | **必须**，获取的access_token。
-openid  | string | **可选**，通过企业的access_token获取用户表单列表时必须填写，通过用户access_token获取用户列表时无需填写。
 
 ```json
 [
@@ -320,7 +258,7 @@ openid  | string | **可选**，通过企业的access_token获取用户表单列
 
 需要Scope: `forms`
 
-    GET https://api.jinshuju.com/v4/forms/RygpW3?access_token=...
+    GET https://api.jinshuju.net/v4/forms/RygpW3?access_token=...
 
 ```json
 {
@@ -639,117 +577,11 @@ openid  | string | **可选**，通过企业的access_token获取用户表单列
 }
 ```
 
-### 复制表单
-
-    POST https://api.jinshuju.com/v4/forms/2d4iH0/copy
-
-参数
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-access_token  | string | **必须**，可使用2.1中的个人access token，或2.2中的企业access token。
-openid  | string | **可选**，获取的用户列表中的openid。使用个人的acces token无需填写；使用企业的access token必须填写
-
-默认情况下，返回的response的形式如下：
-
-````json
-{
-  "id": "58512d8159601539b83e75fa",
-  "token": "AyEpBI",
-  "name": "[新]学习小组第一期话题投票",
-  "entries_count": 0,
-  "shared": false,
-  "description": "这是一个大家都可以加入或旁听的学习小组，",
-  "created_at": "2016-12-14T11:31:14.255Z",
-  "updated_at": "2016-12-14T11:31:15.325Z",
-  "fields": [
-    {
-      "type": "single_line_text",
-      "label": "你的大名",
-      "api_code": "field_1",
-      "notes": "",
-      "validations": {},
-      "predefined_value": null,
-      "private": false
-    },
-    {
-      "type": "multiple_choice",
-      "label": "请选择你喜欢的话题",
-      "api_code": "field_2",
-      "notes": "",
-      "validations": {},
-      "private": false,
-      "choices": [
-        {
-          "name": "如何理解产品经理这个角色",
-          "value": "gRpI",
-          "hidden": false
-        },
-        {
-          "name": "如何提高碎片化阅读的效率",
-          "value": "gmIV",
-          "hidden": false
-        },
-        {
-          "name": "利用Excel进行数据分析的技巧",
-          "value": "qTXj",
-          "hidden": false
-        },
-        {
-          "name": "如何快速阅读一本书",
-          "value": "OASQ",
-          "hidden": false
-        },
-        {
-          "name": "QA进阶。相信我，你们都不需要入门",
-          "value": "H2YM",
-          "hidden": false
-        },
-        {
-          "name": "《无价》读书心得分享",
-          "value": "Ud2N",
-          "hidden": false
-        },
-        {
-          "name": "设计中关于字体的二三事",
-          "value": "V2nl",
-          "hidden": false
-        },
-        {
-          "name": "金数据产品运行的基本原理。",
-          "value": "BxvN",
-          "hidden": false
-        },
-        {
-          "name": "金数据设计的基本原则和思考",
-          "value": "rQAm",
-          "hidden": false
-        }
-      ],
-      "allow_other": false
-    }
-  ],
-  "setting": {
-    "icon": "form-icon-chart",
-    "color": "#BB87AF",
-    "open_rule": "open",
-    "permission": "public",
-    "result_state": "closed",
-    "result_url": null,
-    "search_state": "closed",
-    "search_url": null,
-    "push_url": null,
-    "success_redirect_url": null,
-    "success_redirect_fields": []
-  }
-}
-````
-
 ### 获取表单当前状态
 
 需要Scope: `forms`
 
-    GET https://api.jinshuju.com/v4/forms/RygpW3/status?access_token=...
+    GET https://api.jinshuju.net/v4/forms/RygpW3/status?access_token=...
 
 ```json
 {
@@ -763,7 +595,7 @@ openid  | string | **可选**，获取的用户列表中的openid。使用个人
 
 需要Scope： `read_entries`
 
-    GET https://api.jinshuju.com/v4/forms/RygpW3/entries?access_token=...
+    GET https://api.jinshuju.net/v4/forms/RygpW3/entries?access_token=...
 
 ```json
 [
@@ -780,7 +612,7 @@ openid  | string | **可选**，获取的用户列表中的openid。使用个人
             "zI63",
             "uN9L"
         ],
-        "field_17": "roody@jinshuju.com",
+        "field_17": "roody@jinshuju.net",
         "field_5": [
             "7oLf",
             "vQki"
@@ -810,36 +642,36 @@ openid  | string | **可选**，获取的用户列表中的openid。使用个人
 查询数据，支持与现有数据列表查询类似的接口
 
 * 文本、单选、多选、下拉框、评分、商品、序号(serial_number)、扩展属性(x_field_1)
-`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&field_1=xxx`
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1=xxx`
 *注：获取表单结构中暂无商品字段的item信息*
 *注：全匹配查询，不支持模糊查询*
 
 * 同一字段的多个条件取并集查询
-`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&field_1[]=xxx&field_1[]=yyy`
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1[]=xxx&field_1[]=yyy`
 
 * 多个字段取交集查询
-`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&field_1=xxx&field_2=yyy`
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1=xxx&field_2=yyy`
 
 * 矩阵单选查询
-`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&field_1[<题目code>][]=<选项code>`
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1[<题目code>][]=<选项code>`
 
 * 二级下拉框查询
-`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&field_1[<一级选项code>]=<二级选项code>`
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&field_1[<一级选项code>]=<二级选项code>`
 
 * 微信省市查询
-`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&x_field_weixin_province_city[陕西]=西安`
+`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&x_field_weixin_province_city[陕西]=西安`
 
 * 数据提交时间查询
-指定日期：`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&created_at=2016-1-22`
-某一日期之后：`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&created_at[start]=2016-1-22`
-某一日期之前：`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&created_at[end]=2016-1-22`
-某个日期区间：`http://api.jinshuju.com/v4/forms/aJSON8/entries?access_token=<token>&created_at[start]=2015-12-15&created_at[end]=2016-1-22`
+指定日期：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at=2016-1-22`
+某一日期之后：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at[start]=2016-1-22`
+某一日期之前：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at[end]=2016-1-22`
+某个日期区间：`http://api.jinshuju.net/v4/forms/aJSON8/entries?access_token=<token>&created_at[start]=2015-12-15&created_at[end]=2016-1-22`
 
 ### 获取单条数据
 
 需要Scope: `read_entries`
 
-    GET https://api.jinshuju.com/v4/forms/RygpW3/entries/<序列号>?access_token=...
+    GET https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
 
 JSON Load:
 
@@ -857,7 +689,7 @@ JSON Load:
         "zI63",
         "uN9L"
     ],
-    "field_17": "roody@jinshuju.com",
+    "field_17": "roody@jinshuju.net",
     "field_5": [
         "7oLf",
         "vQki"
@@ -885,8 +717,8 @@ JSON Load:
 需要Scope: `form_setting`
 
 #### 获取表单设置
-    
-    get https://api.jinshuju.com/v4/forms/RygpW3/setting?access_token=...
+
+    get https://api.jinshuju.net/v4/forms/RygpW3/setting?access_token=...
 
 Json Load:
 ```json
@@ -908,12 +740,14 @@ Json Load:
 }
 ```
 #### 更新表单设置
-    
-    put https://api.jinshuju.com/v4/forms/RygpW3/setting
-    
+
+    put https://api.jinshuju.net/v4/forms/RygpW3/setting
+
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token    | string | **必须**,通过oauth认证所得到的access_token
+access_token	| string | **必须**,通过oauth认证所得到的access_token
 success_redirect_url | string | 提交成功后的跳转网址
-success_redirect_fields | string | 提交成功后的跳转网址附加字段参数，以及提交给该字段的信息，最多三个参数，多个参数以空格分隔，如"serial_number x_field_1"，超过三个参数会回应报错信息。参数必须为表单里字段，会自动过滤非表单字段，目前支持：序号、单/多行文本、单选、多选、数字、邮箱、电话、日期以及网址等字段。如果表单中包含商品字段，则还可以附带序号和总价。可参考 https://help.jinshuju.com/articles/redirect-with-params.html 
-push_url | string | 数据以JSON格式推送的网址，使用请参考https://help.jinshuju.com/articles/http-push
+success_redirect_fields | string | 提交成功后的跳转网址附加字段参数，以及提交给该字段的信息，最多三个参数，多个参数以空格分隔，如"serial_number x_field_1"，超过三个参数会回应报错信息。参数必须为表单里字段，会自动过滤非表单字段，目前支持：序号、单/多行文本、单选、多选、数字、邮箱、电话、日期以及网址等字段。如果表单中包含商品字段，则还可以附带序号和总价。可参考 https://help.jinshuju.net/articles/redirect-with-params.html
+push_url | string | 数据以JSON格式推送的网址，使用请参考https://help.jinshuju.net/articles/http-push
+publish_form_embed_js | string | 设置官方应用中心嵌入到金数据发布表单页面的js
+publish_form_embed_styles | string | 设置官方应用中心嵌入到金数据发布表单页面的style
