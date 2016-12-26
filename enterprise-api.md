@@ -922,7 +922,9 @@ push_url | string | 数据以JSON格式推送的网址，使用请参考https://
 
 #### 为表单添加协作成员
     
-    POST https://api.jinshuju.com/v4/forms/2d4iH0/cooperators
+需要Scope: `forms`
+
+    POST https://api.jinshuju.com/v4/forms/RygpW3/cooperators?access_token=...
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
@@ -933,7 +935,9 @@ role | string | **必须**，指定的角色，仅支持 manager, data_maintaine
 
 #### 为表单变更协作成员角色
     
-    PUT https://api.jinshuju.com/v4/forms/2d4iH0/cooperators/<openid>
+需要Scope: `forms`
+
+    PUT https://api.jinshuju.com/v4/forms/RygpW3/cooperators/<openid>?access_token=...
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
@@ -943,7 +947,10 @@ role | string | **必须**，指定的角色，仅支持 manager, data_maintaine
 
 #### 为表单移除协作成员
     
-    DELETE https://api.jinshuju.com/v4/forms/2d4iH0/cooperators/<openid>
+    
+需要Scope: `forms`
+
+    DELETE https://api.jinshuju.com/v4/forms/RygpW3/cooperators/<openid>?access_token=...
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
