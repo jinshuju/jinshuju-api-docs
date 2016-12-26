@@ -648,7 +648,8 @@ openid  | string | **可选**，通过企业的access_token获取用户表单列
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
 access_token  | string | **必须**，可使用2.1中的个人access token，或2.2中的企业access token。
-openid  | string | **可选**，获取的用户列表中的openid。使用个人的acces token无需填写；使用企业的access token必须填写
+openid  | string | **可选**，获取的用户列表中的openid。使用个人的acces token无需填写；使用企业的access token必须填写。
+name  | string | **可选**，复制出来的表单命名。如果不提供或者为空字符串，将使用“[新]”+原表单名作为复制后的表单的名字。 
 
 默认情况下，返回的response的形式如下：
 
@@ -913,7 +914,41 @@ Json Load:
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token    | string | **必须**,通过oauth认证所得到的access_token
+access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
 success_redirect_url | string | 提交成功后的跳转网址
 success_redirect_fields | string | 提交成功后的跳转网址附加字段参数，以及提交给该字段的信息，最多三个参数，多个参数以空格分隔，如"serial_number x_field_1"，超过三个参数会回应报错信息。参数必须为表单里字段，会自动过滤非表单字段，目前支持：序号、单/多行文本、单选、多选、数字、邮箱、电话、日期以及网址等字段。如果表单中包含商品字段，则还可以附带序号和总价。可参考 https://help.jinshuju.com/articles/redirect-with-params.html
 push_url | string | 数据以JSON格式推送的网址，使用请参考https://help.jinshuju.com/articles/http-push
+
+
+#### 为表单添加协作成员
+    
+    POST https://api.jinshuju.com/v4/forms/2d4iH0/cooperators
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
+openid | string | **必须**，获取的用户列表中的openid。这里需填写加为协作成员的用户openid。
+role | string | **必须**，指定的角色，仅支持 manager, data_maintainer, data_viewer。
+
+
+#### 为表单变更协作成员角色
+    
+    PUT https://api.jinshuju.com/v4/forms/2d4iH0/cooperators/<openid>
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
+role | string | **必须**，指定的角色，仅支持 manager, data_maintainer, data_viewer。
+
+
+#### 为表单移除协作成员
+    
+    DELETE https://api.jinshuju.com/v4/forms/2d4iH0/cooperators/<openid>
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
+
+
+
+
