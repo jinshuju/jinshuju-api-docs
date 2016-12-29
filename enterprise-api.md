@@ -970,7 +970,7 @@ access_token    | string | **必须**,可使用2.1中的个人access token，或
 
 
 
-#### 删除表单API
+#### 删除表单
     
 需要Scope: `forms`
 
