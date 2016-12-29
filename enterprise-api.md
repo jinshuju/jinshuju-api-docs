@@ -953,9 +953,10 @@ role | string | **必须**，指定的角色，仅支持 manager, data_maintaine
 
 
 
+
+
 #### 为表单移除协作成员
     
-    
 需要Scope: `forms`
 
     DELETE https://api.jinshuju.com/v4/forms/RygpW3/cooperators/<openid>?access_token=...
@@ -968,9 +969,9 @@ access_token    | string | **必须**,可使用2.1中的个人access token，或
 
 
 
+
 #### 删除表单API
     
-    
 需要Scope: `forms`
 
     DELETE https://api.uat.jinshuju.com/v4/forms/YYtYiX?access_token=...
