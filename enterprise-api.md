@@ -265,7 +265,7 @@ Json Load:
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token  | string | **必须**，获取的access_token。
+access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
 openid  | string | **可选**，通过企业的access_token获取用户表单列表时必须填写，通过用户access_token获取用户列表时无需填写。
 
 ```json
@@ -955,6 +955,19 @@ role | string | **必须**，指定的角色，仅支持 manager, data_maintaine
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
 access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
+
+
+
+#### 删除表单API
+    
+    
+需要Scope: `forms`
+
+    DELETE https://api.uat.jinshuju.com/v4/forms/YYtYiX?access_token=...
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
 
 
 
