@@ -20,7 +20,7 @@
 
 ## 2. 创建新表单
 
-你可以在数据属性中使用data-role="gd-sdk"，或直接调用gdsdk.createForm()方法来创建一个新表单
+你可以在数据属性中使用`data-role="gd-sdk"`，或直接调用`gdsdk.createForm()`方法来创建一个新表单
 示例如下：
 
 ````
