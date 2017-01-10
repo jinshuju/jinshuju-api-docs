@@ -29,7 +29,6 @@ HTML
 ````
 JavaScript
 gdsdk.createForm()
-
 ````
 
 
