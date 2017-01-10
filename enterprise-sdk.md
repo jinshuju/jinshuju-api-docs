@@ -20,7 +20,7 @@
 
 ## 2. 创建新表单
 
-你可以在数据属性中使用`data-role="gd-sdk"`，或直接调用`gdsdk.createForm()`方法来创建一个新表单，示例如下：
+你可以在数据属性中使用`data-role="gd-sdk"`，或直接调用`gdsdk.createForm()`方法来创建一个新表单。示例如下：
 
 ````
 HTML
@@ -35,7 +35,7 @@ gdsdk.createForm()
 
 ## 3. 编辑表单
 
-你可以在数据属性中使用`data-role="gd-sdk"`和`data-form="<form_token>"`，或直接调用`gdsdk.editForm("<form_token>")`方法来创建一个新表单，示例如下：
+你可以在数据属性中使用`data-role="gd-sdk"`和`data-form="<form_token>"`，或直接调用`gdsdk.editForm("<form_token>")`方法来创建一个新表单。示例如下：
 
 ````
 HTML:
@@ -49,8 +49,7 @@ gdsdk.editForm("<form_token>")
 
 ## 4. 保存表单
 
-你可以将保存表单按钮的事件在gdsdk.ready中进行绑定
-示例如下：
+你可以将保存表单按钮的事件在gdsdk.ready中进行绑定。示例如下：
 
 ````
 gdsdk.ready = function() {
