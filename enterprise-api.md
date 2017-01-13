@@ -238,20 +238,32 @@ Link:<https://api.jinshuju.com/v4/forms?access_token=...&per_page=20&cursor=xxxx
 
 需要Scope: `users`
 
-    get https://api.jinshuju.com/v4/users?access_token=...
+    get https://api.jinshuju.com/v4/users
+    
+参数
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+provider  | string | **可选**，企业的subdomain。
+uid  | string | **可选**，使用SDK静默注册的用户在用户的profile中记录的uid。
 
 Json Load:
 ```json
 {
-    "openid": "ab32c5dd-0d12-5498-afe7-6d109436d9b5",
-    "name": "张三",
-    "email": "zhang@gmail.com",
-    "mobile": "18000000000",
-    "role": "admin",
+    "openid": "033ae0b9-ed61-5587-900a-5c95961914ee",
+    "name": "User_liudalu0002",
+    "email": "liudalu0002@fake.xitian.com",
+    "mobile": null,
+    "role": "teamworker",
     "status": "active",
     "avatar": null,
-    "forms_count": 0,
-    "entries_count": 0
+    "forms_count": 2,
+    "entries_count": 0,
+    "authentications": [
+      {
+        "provider": "xitian",
+        "uid": "liudalu0002"
 },
 ```
 
