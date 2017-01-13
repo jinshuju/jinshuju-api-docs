@@ -59,3 +59,37 @@ gdsdk.ready = function() {
   };
 };
 ````
+
+## 5. 控制表单显示的字段
+
+你可以配置在引用的SDK中不支持的字段列表。配置后的字段将不出现在新建和编辑的表单中。示例如下：
+
+````
+gdsdk.ready = function() {
+  gdsdk.config({
+    fields: {except: ['goods', 'formula']}
+  });
+};
+````
+
+可配置的不支持的字段列表如下：
+
+````
+["single_line_text", "paragraph_text", "single_choice", "multiple_choice", "likert", "matrix", "number", "time", "date", "drop_down", "section_break", "page_break", "link", "rating", "cascade_drop_down", "attachment", "form_association", "formula", "mobile", "email", "address", "geo", "phone", "goods"]
+````
+
+## 6. 支持JWT登录和静默注册
+
+SDK中支持JWT登录用户和静默注册用户。
+JWT中需包含请求登录用户的uid。如请求登录的用户没有注册，则会在金数据系统中静默注册。注册用户用户名为：`User_<JWT中的uid>`邮箱为：`<JWT中的uid>@fake.<Subdomain>.com`；如请求登录的用户已经注册，则会直接登录金数据系统。
+示例如下：
+
+````
+HTML
+<button data-role="gd-sdk" data-jwt="<jwt>" data-form="Dv6jVf">修改</button>
+````
+````
+JavaScript
+gdsdk.createForm("<jwt>")
+gdsdk.editForm("<form_token>", "<jwt>")
+````
