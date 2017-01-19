@@ -267,6 +267,41 @@ Json Load:
 },
 ```
 
+### 注册用户
+注意：这里的access_token是在2.2中获取的企业访问access_token
+
+需要Scope: `users`
+
+    post https://api.jinshuju.com/v4/users
+    
+参数
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+uid  | string | **可选**，使用SDK静默注册的用户在用户的profile中记录的uid。
+
+Json Load:
+```json
+{
+    "openid": "033ae0b9-ed61-5587-900a-5c95961914ee",
+    "name": "User_liudalu0002",
+    "email": "liudalu0002@fake.xitian.com",
+    "mobile": null,
+    "role": "teamworker",
+    "status": "active",
+    "avatar": null,
+    "forms_count": 2,
+    "entries_count": 0,
+    "authentications": [
+      {
+        "provider": "xitian",
+        "uid": "liudalu0002"
+},
+```
+
+
+
 ### 获取表单列表
 
 需要Scope: `forms`
