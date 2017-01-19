@@ -113,7 +113,7 @@ gdsdk.ready = function() {
 'tab', 'window'
 ````
 
-### 6. 支持JWT登录和静默注册
+### 7. 支持JWT登录和静默注册
 
 SDK中支持JWT登录用户和静默注册用户。
 JWT中需包含请求登录用户的uid。如请求登录的用户没有注册，则会在金数据系统中静默注册。注册用户用户名为：`User_<JWT中的uid>`邮箱为：`<JWT中的uid>@fake.<Subdomain>.com`；如请求登录的用户已经注册，则会直接登录金数据系统。
@@ -129,7 +129,7 @@ gdsdk.createForm("<jwt>")
 gdsdk.editForm("<form_token>", "<jwt>")
 ````
 
-### 7. 支持JWT退出登录
+### 8. 支持JWT退出登录
 
 SDK中支持JWT退出登录用户。JWT中需包含请求退出登录用户的uid。
 示例如下：
