@@ -95,6 +95,24 @@ gdsdk.ready = function() {
 ["single_line_text", "paragraph_text", "single_choice", "multiple_choice", "likert", "matrix", "number", "time", "date", "drop_down", "section_break", "page_break", "link", "rating", "cascade_drop_down", "attachment", "form_association", "formula", "mobile", "email", "address", "geo", "phone", "goods"]
 ````
 
+### 6. 控制SDK打开窗口在浏览器新tab中还是新窗口
+
+你可以配置在引用的SDK中打开窗口在浏览器新tab中还是新窗口。示例如下：
+
+````
+gdsdk.ready = function() {
+  gdsdk.config({
+      open: 'tab'
+  });
+};
+````
+
+可配置的不支持的字段列表如下：
+
+````
+'tab', 'window'
+````
+
 ### 6. 支持JWT登录和静默注册
 
 SDK中支持JWT登录用户和静默注册用户。
