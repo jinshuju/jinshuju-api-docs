@@ -234,7 +234,6 @@ Link:<https://api.jinshuju.com/v4/forms?access_token=...&per_page=20&cursor=xxxx
 
 
 ### 获取企业中用户列表
-注意：这里的access_token是在2.2中获取的企业访问access_token
 
 需要Scope: `users`
 
@@ -267,8 +266,58 @@ Json Load:
 },
 ```
 
+### 获取当前用户信息
+
+需要Scope: `public`
+
+    get https://api.jinshuju.com/v4/me
+    
+参数
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+openid  | string | **可选**，金数据中用户的唯一标识。如使用2.1中的个人access token，无需携带；如使用2.2中的企业access token，必须携带。
+
+Json Load:
+```json
+{
+    "openid": "5af4563b-4146-58a9-a2c0-9c41c488333b",
+    "name": "张三",
+    "email": "zhangsan@jinshuju.com",
+    "mobile": "18000000001",
+    "role": "admin",
+    "status": "active",
+    "avatar": null,
+    "forms_count": 45,
+    "entries_count": 21396
+},
+```
+
+### 获取当前企业信息
+
+需要Scope: `profile`
+
+    get https://api.jinshuju.com/v4/profile
+    
+参数
+
+参数名称  | 类型  | 备注
+------------- | ------------- | -----------
+access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+
+Json Load:
+```json
+{
+  "email": "creator@jinshuju.com",
+  "organization_name": "金数据",
+  "organization_subdomain": "jinshuju",
+  "paid": true,
+  "custom_domain": "http://com-uat.tunnel.mobi"
+}
+```
+
 ### 注册用户
-注意：这里的access_token是在2.2中获取的企业访问access_token
 
 需要Scope: `users`
 
@@ -688,7 +737,10 @@ openid  | string | **可选**，通过企业的access_token获取用户表单列
 
 ### 复制表单
 
-    POST https://api.jinshuju.com/v4/forms/2d4iH0/copy
+注意：示例中的<2d4iH0>为被复制的表单token
+
+    POST https://api.jinshuju.com/v4/forms/2d4iH0/copy
+### 复制表单
 
 参数
 
