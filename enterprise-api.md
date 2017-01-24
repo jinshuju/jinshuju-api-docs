@@ -243,7 +243,7 @@ Link:<https://api.jinshuju.com/v4/forms?access_token=...&per_page=20&cursor=xxxx
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+access_token  | string | **必须**，必须使用2.2中的企业access token。
 provider  | string | **可选**，企业的subdomain。
 uid  | string | **可选**，使用SDK静默注册的用户在用户的profile中记录的uid。
 
@@ -276,7 +276,7 @@ Json Load:
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+access_token  | string | **必须**，可使用2.1中的个人access token；或2.2中的企业access token。
 openid  | string | **可选**，金数据中用户的唯一标识。如使用2.1中的个人access token，无需携带；如使用2.2中的企业access token，必须携带。
 
 Json Load:
@@ -304,7 +304,7 @@ Json Load:
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+access_token  | string | **必须**，可使用2.1中的个人access token；或2.2中的企业access token。
 
 Json Load:
 ```json
@@ -327,7 +327,7 @@ Json Load:
 
 参数名称  | 类型  | 备注
 ------------- | ------------- | -----------
-access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
+access_token  | string | **必须**，必须使用2.2中的企业access token。
 uid  | string | **可选**，使用SDK静默注册的用户在用户的profile中记录的uid。
 
 Json Load:
