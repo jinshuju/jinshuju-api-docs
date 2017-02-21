@@ -53,7 +53,6 @@ gdsdk.createForm()
 你可以在数据属性中使用`data-role="gd-sdk"`和`data-form="<form_token>"`，或直接调用`gdsdk.editForm("<form_token>")`方法来创建一个新表单。示例如下：
 
 ```html
-HTML
 <button data-role="gd-sdk" data-form="Dv6jVf">修改</button>
 ```
 ```javascript
@@ -90,7 +89,11 @@ gdsdk.ready = function() {
 可配置的不支持的字段列表如下：
 
 ```json
-["single_line_text", "paragraph_text", "single_choice", "multiple_choice", "likert", "matrix", "number", "time", "date", "drop_down", "section_break", "page_break", "link", "rating", "cascade_drop_down", "attachment", "form_association", "formula", "mobile", "email", "address", "geo", "phone", "goods"]
+["single_line_text", "paragraph_text", "single_choice", "multiple_choice", 
+"likert", "matrix", "number", "time", "date", "drop_down", "section_break", 
+"page_break", "link", "rating", "cascade_drop_down", "attachment", 
+"form_association", "formula", "mobile", "email", "address", 
+"geo", "phone", "goods"]
 ```
 
 ### 6. 控制SDK打开窗口在浏览器新tab中还是新窗口
