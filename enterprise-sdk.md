@@ -39,35 +39,33 @@
 
 你可以在数据属性中使用`data-role="gd-sdk"`，或直接调用`gdsdk.createForm()`方法来创建一个新表单。示例如下：
 
-````
-HTML
+```html
 <button data-role="gd-sdk">创建新表单</button>
-````
-````
-JavaScript
+```
+  
+```javascript
 gdsdk.createForm()
-````
+```
 
 
 ### 3. 编辑表单
 
 你可以在数据属性中使用`data-role="gd-sdk"`和`data-form="<form_token>"`，或直接调用`gdsdk.editForm("<form_token>")`方法来创建一个新表单。示例如下：
 
-````
+```html
 HTML
 <button data-role="gd-sdk" data-form="Dv6jVf">修改</button>
-````
-````
-JavaScript
+```
+```javascript
 gdsdk.editForm("<form_token>")
-````
+```
 
 
 ### 4. 保存表单
 
 你可以将保存表单按钮的事件在gdsdk.ready中进行绑定。示例如下：
 
-````
+```javascript
 gdsdk.ready = function() {
   gdsdk.events.onFormSaved = function(data, sdkWindow) {
     var formJSON = data.form; # saved form json
@@ -75,43 +73,43 @@ gdsdk.ready = function() {
     # specify your code to handle the event
   };
 };
-````
+```
 
 ### 5. 控制表单显示的字段
 
 你可以配置在引用的SDK中不支持的字段列表。配置后的字段将不出现在新建和编辑的表单中。示例如下：
 
-````
+```javascript
 gdsdk.ready = function() {
   gdsdk.config({
     fields: {except: ['goods', 'formula']}
   });
 };
-````
+```
 
 可配置的不支持的字段列表如下：
 
-````
+```json
 ["single_line_text", "paragraph_text", "single_choice", "multiple_choice", "likert", "matrix", "number", "time", "date", "drop_down", "section_break", "page_break", "link", "rating", "cascade_drop_down", "attachment", "form_association", "formula", "mobile", "email", "address", "geo", "phone", "goods"]
-````
+```
 
 ### 6. 控制SDK打开窗口在浏览器新tab中还是新窗口
 
 你可以配置在引用的SDK中打开窗口在浏览器新tab中还是新窗口。示例如下：
 
-````
+```javascript
 gdsdk.ready = function() {
   gdsdk.config({
       open: 'tab'
   });
 };
-````
+```
 
 可配置的打开窗口方式如下：
 
-````
+```
 'tab', 'window'
-````
+```
 
 ### 7. 支持JWT登录和静默注册
 
@@ -119,24 +117,21 @@ SDK中支持JWT登录用户和静默注册用户。
 JWT中需包含请求登录用户的uid。如请求登录的用户没有注册，则会在金数据系统中静默注册。注册用户用户名为：`User_<JWT中的uid>`邮箱为：`<JWT中的uid>@fake.<Subdomain>.com`；如请求登录的用户已经注册，则会直接登录金数据系统。
 示例如下：
 
-````
-HTML
+```html
 <button data-role="gd-sdk" data-jwt="<jwt>" data-form="Dv6jVf">修改</button>
-````
-````
-JavaScript
+```
+```javascript
 gdsdk.createForm("<jwt>")
 gdsdk.editForm("<form_token>", "<jwt>")
-````
+```
 
 ### 8. 支持JWT退出登录
 
 SDK中支持JWT退出登录用户。JWT中需包含请求退出登录用户的uid。
 示例如下：
 
-````
-JavaScript
+```javascript
 gdsdk.logout("<jwt>")
-````
+```
 
 
