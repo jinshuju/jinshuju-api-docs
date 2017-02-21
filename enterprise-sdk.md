@@ -67,9 +67,9 @@ gdsdk.editForm("<form_token>")
 ```javascript
 gdsdk.ready = function() {
   gdsdk.events.onFormSaved = function(data, sdkWindow) {
-    var formJSON = data.form; # saved form json
-    sdkWindow.close(); # close sdk window
-    # specify your code to handle the event
+    var formJSON = data.form; // saved form json
+    sdkWindow.close(); // close sdk window
+    // specify your code to handle the event
   };
 };
 ```
