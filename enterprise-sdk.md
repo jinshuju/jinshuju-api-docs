@@ -130,11 +130,13 @@ gdsdk.editForm("<form_token>", "<jwt>")
 
 ### 8. 支持JWT退出登录
 
-SDK中支持JWT退出登录用户。JWT中需包含请求退出登录用户的uid。
+SDK中支持JWT退出登录用户。JWT中需包含请求退出登录用户的uid，并且可以选择填写退出登录之后的回调函数。
 示例如下：
 
 ```javascript
-gdsdk.logout("<jwt>")
+gdsdk.logout("<jwt>", function() {
+  location.href = '/home';
+})
 ```
 
 
