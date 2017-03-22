@@ -363,6 +363,7 @@ Json Load:
 ------------- | ------------- | -----------
 access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
 openid  | string | **可选**，通过企业的access_token获取用户表单列表时必须填写，通过用户access_token获取用户列表时无需填写。
+source  | string | **可选**，created可获取所有当前用户是表单创建者的表单列表；managed可获取所有当前用户是表单创建者和表单管理员的表单列表。
 
 ```json
 [
