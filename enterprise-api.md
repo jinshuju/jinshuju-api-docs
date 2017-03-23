@@ -672,67 +672,535 @@ source  | string | **可选**，created可获取所有当前用户是表单创�
                     "name": "是",
                     "value": "SoG1"
                 },
-                {
-                    "name": "否",
-                    "value": "iyh7"
-                },
-                {
-                    "name": "没打通",
-                    "value": "9m1q"
-                }
-            ],
-            "allow_other": false
+{
+  "id": "58d0821a2084c548c9c76938",
+  "token": "iIAVew",
+  "name": "包含所有字段的表单",
+  "entries_count": 3,
+  "shared": false,
+  "description": null,
+  "creator_name": "增长天王",
+  "creator_openid": "5af4563b-4146-58a9-a2c0-9c41c488333b",
+  "created_at": "2017-03-21T01:30:02.618Z",
+  "updated_at": "2017-03-22T10:22:41.050Z",
+  "fields": [
+    {
+      "type": "page_break",
+      "label": null,
+      "api_code": "field_1",
+      "notes": ""
+    },
+    {
+      "type": "formula",
+      "label": "计算字段",
+      "api_code": "field_29",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "formula": "field_10",
+      "display_as_percentage": false
+    },
+    {
+      "type": "single_line_text",
+      "label": "单行文字",
+      "api_code": "field_2",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "paragraph_text",
+      "label": "多行文字",
+      "api_code": "field_3",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "single_choice",
+      "label": "单项选择",
+      "api_code": "field_4",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "选项",
+          "value": "EtdU",
+          "hidden": false
         },
         {
-            "type": "paragraph_text",
-            "label": "联系情况",
-            "api_code": "field_8",
-            "notes": "",
-            "predefined_value": "1. 能否参加\n2. 哪个公司？\n3. 金数据的使用情况",
-            "private": true,
-            "validations": {}
+          "name": "选项",
+          "value": "Z47n",
+          "hidden": false
         },
         {
-            "type": "single_choice",
-            "label": "签到",
-            "api_code": "field_15",
-            "notes": "",
-            "predefined_value": null,
-            "private": true,
-            "validations": {},
-            "choices": [
-                {
-                    "name": "是 ",
-                    "value": "303X"
-                },
-                {
-                    "name": "否",
-                    "value": "2Y8V"
-                }
-            ],
-            "allow_other": false
-        },
-        {
-            "type": "paragraph_text",
-            "label": "备注",
-            "api_code": "field_18",
-            "notes": "",
-            "predefined_value": "",
-            "private": true,
-            "validations": {}
+          "name": "选项",
+          "value": "eldU",
+          "hidden": false
         }
-    ],
-    "setting": {
-        "icon": "fontello-pencil",
-        "color": "#659199",
-        "open_rule": "open",
-        "permission": "public",
-        "result_state": "closed",
-        "result_url": null,
-        "search_state": "closed",
-        "search_url": null,
-        "push_url": null
+      ],
+      "allow_other": false
+    },
+    {
+      "type": "multiple_choice",
+      "label": "多项选择",
+      "api_code": "field_5",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "选项",
+          "value": "9WG4",
+          "hidden": false
+        },
+        {
+          "name": "选项",
+          "value": "86rJ",
+          "hidden": false
+        },
+        {
+          "name": "选项",
+          "value": "L4NO",
+          "hidden": false
+        }
+      ],
+      "allow_other": false
+    },
+    {
+      "type": "single_choice",
+      "label": "图片单选",
+      "api_code": "field_6",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "1-Cfl_B1ALQS7VQGj_iSiyPA",
+          "value": "hd0C",
+          "hidden": false,
+          "image_url": "https://dn-jintest.qbox.me/ic/20161026140743_599030@iclarge"
+        },
+        {
+          "name": "1-BJ1Jami58oxr5artYGaqDw",
+          "value": "RWcw",
+          "hidden": false,
+          "image_url": "https://dn-jintest.qbox.me/ic/20161026140743_d3cd8d@iclarge"
+        },
+        {
+          "name": "1-CbGEoJYT-DVnXx0_w-iEeg",
+          "value": "25gu",
+          "hidden": false,
+          "image_url": "https://dn-jintest.qbox.me/ic/20161026140743_9f23fe@iclarge"
+        }
+      ]
+    },
+    {
+      "type": "multiple_choice",
+      "label": "图片多选",
+      "api_code": "field_7",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "1-DjFewMYwOJTfcAoDr8wgug",
+          "value": "gb8K",
+          "hidden": false,
+          "image_url": "https://dn-jintest.qbox.me/ic/20161026140753_f10da1@iclarge"
+        },
+        {
+          "name": "1-EcIXQpX2CoV36BiD8fPq9w",
+          "value": "4cF4",
+          "hidden": false,
+          "image_url": "https://dn-jintest.qbox.me/ic/20161026140753_38905f@iclarge"
+        },
+        {
+          "name": "1-G6gfugR9At7OlSj6YxIOKw",
+          "value": "RP8o",
+          "hidden": false,
+          "image_url": "https://dn-jintest.qbox.me/ic/20161026140753_f7e716@iclarge"
+        }
+      ]
+    },
+    {
+      "type": "likert",
+      "label": "矩阵单选",
+      "api_code": "field_8",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "选项",
+          "value": "OrdJ"
+        },
+        {
+          "name": "选项",
+          "value": "lIP4"
+        },
+        {
+          "name": "选项",
+          "value": "MSwM"
+        }
+      ],
+      "statements": [
+        {
+          "name": "题目",
+          "value": "vAfq"
+        },
+        {
+          "name": "题目",
+          "value": "owYy"
+        },
+        {
+          "name": "题目",
+          "value": "dl9C"
+        }
+      ]
+    },
+    {
+      "type": "matrix",
+      "label": "矩阵填空",
+      "api_code": "field_9",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "statements": [
+        {
+          "name": "题目",
+          "value": "lNIw"
+        },
+        {
+          "name": "题目",
+          "value": "KvbO"
+        },
+        {
+          "name": "题目",
+          "value": "dZIP"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "项目",
+          "value": "vWra"
+        },
+        {
+          "name": "项目",
+          "value": "SKOh"
+        },
+        {
+          "name": "项目",
+          "value": "1A1g"
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "label": "数字",
+      "api_code": "field_10",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false,
+      "display_as_percentage": false
+    },
+    {
+      "type": "time",
+      "label": "时间",
+      "api_code": "field_11",
+      "notes": "",
+      "validations": {},
+      "predefined_value": {},
+      "private": false
+    },
+    {
+      "type": "date",
+      "label": "日期",
+      "api_code": "field_12",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "drop_down",
+      "label": "下拉框",
+      "api_code": "field_13",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "选项",
+          "value": "DdPZ",
+          "hidden": false
+        },
+        {
+          "name": "选项",
+          "value": "WHHp",
+          "hidden": false
+        },
+        {
+          "name": "选项",
+          "value": "nQs8",
+          "hidden": false
+        }
+      ],
+      "allow_other": false
+    },
+    {
+      "type": "section_break",
+      "label": "描述",
+      "api_code": "field_14",
+      "notes": "请在右侧面板添加段落说明信息"
+    },
+    {
+      "type": "page_break",
+      "label": null,
+      "api_code": "field_15",
+      "notes": ""
+    },
+    {
+      "type": "link",
+      "label": "网址",
+      "api_code": "field_16",
+      "notes": "填写示例：http://jinshuju.com 或 https://jinshuju.com",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "rating",
+      "label": "评分",
+      "api_code": "field_17",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "rating_type": "star",
+      "rating_max": 3
+    },
+    {
+      "type": "cascade_drop_down",
+      "label": "二级下拉框",
+      "api_code": "field_18",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "choices": [
+        {
+          "name": "选项1",
+          "value": "0TX9",
+          "sub_choices": [
+            {
+              "name": "二级选项1",
+              "value": "ecv0"
+            },
+            {
+              "name": "二级选项2",
+              "value": "SUKk"
+            }
+          ]
+        },
+        {
+          "name": "选项2",
+          "value": "dwpt",
+          "sub_choices": [
+            {
+              "name": "二级选项1",
+              "value": "R15F"
+            },
+            {
+              "name": "二级选项2",
+              "value": "k346"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "attachment",
+      "label": "附件",
+      "api_code": "field_19",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "max_file_quantity": 1,
+      "media_type": {
+        "type": "unlimited",
+        "value": null
+      }
+    },
+    {
+      "type": "form_association",
+      "label": "表单关联",
+      "api_code": "field_20",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "associated_form_token": "ntZv4v",
+      "associated_field_api_code": "serial_number"
+    },
+    {
+      "type": "single_line_text",
+      "label": "姓名",
+      "api_code": "field_21",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "mobile",
+      "label": "手机",
+      "api_code": "field_22",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "email",
+      "label": "邮箱",
+      "api_code": "field_23",
+      "notes": "",
+      "validations": {},
+      "private": false
+    },
+    {
+      "type": "address",
+      "label": "地址",
+      "api_code": "field_24",
+      "notes": "",
+      "validations": {},
+      "predefined_value": {},
+      "private": false
+    },
+    {
+      "type": "geo",
+      "label": "地理位置",
+      "api_code": "field_25",
+      "notes": "",
+      "validations": {},
+      "private": false
+    },
+    {
+      "type": "phone",
+      "label": "电话",
+      "api_code": "field_26",
+      "notes": "",
+      "validations": {},
+      "predefined_value": null,
+      "private": false
+    },
+    {
+      "type": "goods",
+      "label": "配图商品",
+      "api_code": "field_27",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "with_image": true,
+      "goods_items": [
+        {
+          "name": "1-EcIXQpX2CoV36BiD8fPq9w",
+          "price": 0,
+          "description": "",
+          "api_code": "k6Bw",
+          "inventory": null,
+          "hidden": false,
+          "predefined_value": {
+            "number": null
+          }
+        },
+        {
+          "name": "1-G6gfugR9At7OlSj6YxIOKw",
+          "price": 0,
+          "description": "",
+          "api_code": "mfXz",
+          "inventory": null,
+          "hidden": false,
+          "predefined_value": {
+            "number": null
+          }
+        },
+        {
+          "name": "1-DjFewMYwOJTfcAoDr8wgug",
+          "price": 0,
+          "description": "",
+          "api_code": "7QWj",
+          "inventory": null,
+          "hidden": false,
+          "predefined_value": {
+            "number": null
+          }
+        }
+      ]
+    },
+    {
+      "type": "goods",
+      "label": "无图商品",
+      "api_code": "field_28",
+      "notes": "",
+      "validations": {},
+      "private": false,
+      "with_image": false,
+      "goods_items": [
+        {
+          "name": "商品一",
+          "price": 0,
+          "description": "",
+          "api_code": "jQaM",
+          "inventory": null,
+          "hidden": false,
+          "predefined_value": {
+            "number": null
+          }
+        },
+        {
+          "name": "商品二",
+          "price": 0,
+          "description": "",
+          "api_code": "Ba3h",
+          "inventory": null,
+          "hidden": false,
+          "predefined_value": {
+            "number": null
+          }
+        },
+        {
+          "name": "商品三",
+          "price": 0,
+          "description": "",
+          "api_code": "cpLm",
+          "inventory": null,
+          "hidden": false,
+          "predefined_value": {
+            "number": null
+          }
+        }
+      ]
     }
+  ],
+  "setting": {
+    "icon": "form-icon-photo",
+    "color": "#46B372",
+    "open_rule": "open",
+    "permission": "public",
+    "gen_code_enabled": false,
+    "result_state": "closed",
+    "result_url": null,
+    "search_state": "closed",
+    "search_url": null,
+    "push_url": null,
+    "success_redirect_url": "https://www.XXX.com",
+    "success_redirect_fields": [
+      "serial_number"
+    ]
+  }
 }
 ```
 
