@@ -93,7 +93,7 @@ gdsdk.ready = function() {
 "likert", "matrix", "number", "time", "date", "drop_down", "section_break", 
 "page_break", "link", "rating", "cascade_drop_down", "attachment", 
 "form_association", "formula", "mobile", "email", "address", 
-"geo", "phone", "goods"]
+"geo", "phone", "goods,table"]
 ```
 
 ### 6. 控制SDK打开窗口在浏览器新tab中还是新窗口
