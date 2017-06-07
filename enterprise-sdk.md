@@ -74,19 +74,20 @@ gdsdk.ready = function() {
 };
 ```
 
-### 5. 控制表单显示的字段
+### 5. 控制表单显示和隐藏的字段
 
-你可以配置在引用的SDK中不支持的字段列表。配置后的字段将不出现在新建和编辑的表单中。示例如下：
+你可以配置在引用的SDK中显示和隐藏的字段列表。配置后的字段将不出现在新建和编辑的表单中。如only和except同时使用，系统会取两者交集显示在SDK中。示例如下：
 
 ```javascript
 gdsdk.ready = function() {
   gdsdk.config({
-    fields: {except: ['goods', 'formula']}
-  });
+    fields: {only: ['single_line_text', 'goods', 'cascade_drop_down'],
+             except: ['single_line_text', 'paragraph_text', 'single_choice']}
+ });
 };
 ```
 
-可配置的不支持的字段列表如下：
+可配置的字段列表如下：
 
 ```json
 ["single_line_text", "paragraph_text", "single_choice", "multiple_choice", 
