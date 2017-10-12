@@ -13,16 +13,22 @@
 
 ## `org_client_credentials` 授权流程
 
-要发起 `org_client_credentials` 授权流程，发送 `POST`请求到 `https://account.jinshuju.com/oauth/token` 地址
+要发起 `org_client_credentials` 授权流程，发送 `POST`请求到 `https://account.jinshuju.com/oauth/token` 地址，params 为 `grant_type`, `client_id`, `client_secret`
 
 ```
 POST /oauth/token
-Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
 Content-Type: application/x-www-form-urlencoded;charset=UTF-8
-grant_type=org_client_credentials
+grant_type=org_client_credentials&client_id=$CLIENT_ID$&client_secret=$CLIENT_SECRET$
 ```
 
 __注意，`grant_type` 要设置为 `org_client_credentials`__
+
+curl 命令参考如下：
+
+```
+curl -X POST \
+  'https://account.jinshuju.com/oauth/token?grant_type=org_client_credentials&client_id=$CLIENT_ID$&client_secret=$CLIENT_SECRET$'
+```
 
 Ruby 代码参考如下：
 
