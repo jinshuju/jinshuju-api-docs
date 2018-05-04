@@ -122,8 +122,8 @@ Scope定义了资源范围。目前支持五个：`public`、`profile`、`forms`
 
 HTTP Header中会留下相应的信息。
 
-    X-RateLimit-Limit:120
-    X-RateLimit-Remaining:119
+    X-RateLimit-Limit:1000
+    X-RateLimit-Remaining:999
 
 如果用户有特别高的访问频率需求，可以联系我们。
 
