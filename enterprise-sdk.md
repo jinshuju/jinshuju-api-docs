@@ -50,7 +50,7 @@ gdsdk.createForm()
 
 ### 3. 编辑表单
 
-你可以在数据属性中使用`data-role="gd-sdk"`和`data-form="<form_token>"`，或直接调用`gdsdk.editForm("<form_token>")`方法来创建一个新表单。示例如下：
+你可以在数据属性中使用`data-role="gd-sdk"`和`data-form="<form_token>"`，或直接调用`gdsdk.editForm("<form_token>")`方法来编辑表单。示例如下：
 
 ```html
 <button data-role="gd-sdk" data-form="Dv6jVf">修改</button>
