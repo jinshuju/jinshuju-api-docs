@@ -56,7 +56,7 @@ gdsdk.createForm()
 <button data-role="gd-sdk" data-form="Dv6jVf">修改</button>
 ```
 ```javascript
-gdsdk.editForm("<form_token>")
+gdsdk.editForm("Dv6jVf")
 ```
 
 
