@@ -1,12 +1,14 @@
-# 金数据企业版API `org_client_credentials` 授权方式
+# 金数据高级API `org_client_credentials` 授权方式
 
-金数据企业版API使用OAuth 2标准进行用户验证，一般情况下默认使用`Authorization Grant`来获取`Access Token`
+**本文档适用于您的金数据账号位于 jinshuju.net，如有疑问请联系客服或者销售**
+
+金数据高级API使用OAuth 2标准进行用户验证，一般情况下默认使用`Authorization Grant`来获取`Access Token`
 
 参考OAuth 2.0标准：Authorization Grant https://tools.ietf.org/html/rfc6749#section-1.3
 
 `Authorization Grant` 授权方式一般要求用户使用浏览器（或类似方式）访问授权网页，手工登陆后网页重定向，client端获取 `authorization code` 后再请求 `Access Token`。这种方式安全性较高，但是流程较复杂，一般需要人工交互来授权。
 
-为了方便企业用户开发企业内部自用的应用，金数据企业版API另一种授权方式：`org_client_credentials`。使用 `org_client_credentials` 可以直接通过一个 HTTP 请求获取 `access token`。
+为了方便企业用户开发企业内部自用的应用，金数据高级API另一种授权方式：`org_client_credentials`。使用 `org_client_credentials` 可以直接通过一个 HTTP 请求获取 `access token`。
 
 需要注意的是，`org_client_credentials` 方式获取到的 `access token` 是企业级别的，与个体用户无关。其 `scope` 也是应用全部的 `scope`。这意味着，该 `access token` 可以访问到应用对应企业的所有数据以及应用具备的所有操作权限。
 

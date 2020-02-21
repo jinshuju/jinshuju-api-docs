@@ -1,4 +1,6 @@
-# 金数据SDK文档（企业版）
+# 金数据SDK文档（jinshuju.com）
+
+**本文档适用于您的金数据账号位于 jinshuju.net，如有疑问请联系客服或者销售**
 
 金数据提供SDK可对表单进行创建和编辑操作。
 
@@ -42,7 +44,7 @@
 ```html
 <button data-role="gd-sdk">创建新表单</button>
 ```
-  
+
 ```javascript
 gdsdk.createForm()
 ```
@@ -90,10 +92,10 @@ gdsdk.ready = function() {
 可配置的字段列表如下：
 
 ```json
-["single_line_text", "paragraph_text", "single_choice", "multiple_choice", 
-"likert", "matrix", "number", "time", "date", "drop_down", "section_break", 
-"page_break", "link", "rating", "cascade_drop_down", "attachment", 
-"form_association", "formula", "mobile", "email", "address", 
+["single_line_text", "paragraph_text", "single_choice", "multiple_choice",
+"likert", "matrix", "number", "time", "date", "drop_down", "section_break",
+"page_break", "link", "rating", "cascade_drop_down", "attachment",
+"form_association", "formula", "mobile", "email", "address",
 "geo", "phone", "goods", "table"]
 ```
 

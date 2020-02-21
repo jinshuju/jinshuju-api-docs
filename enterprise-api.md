@@ -1,6 +1,8 @@
-# 金数据API文档 (企业版)
+# 金数据高级API文档 (jinshuju.com)
 
 **注意此文档仅限通用型saas平台产品和金数据企业高级版及以上版本使用，且仅支持这两种类型的用户开通**
+
+**本文档适用于您的金数据账号位于 jinshuju.com，如有疑问请联系客服或者销售**
 
 金数据API使用OAuth 2标准进行用户验证。
 
@@ -240,7 +242,7 @@ Link:<https://api.jinshuju.com/v4/forms?access_token=...&per_page=20&cursor=xxxx
 需要Scope: `users`
 
     get https://api.jinshuju.com/v4/users
-    
+
 参数
 
 参数名称  | 类型  | 备注
@@ -324,7 +326,7 @@ Json Load:
 需要Scope: `users`
 
     post https://api.jinshuju.com/v4/users
-    
+
 参数
 
 参数名称  | 类型  | 备注
@@ -421,7 +423,7 @@ source  | string | **可选**，created可获取所有当前用户是表单创�
 
     GET https://api.jinshuju.com/v4/forms/RygpW3?access_token=...
 
-```json     
+```json
 {
   "id": "58d0821a2084c548c9c76938",
   "token": "iIAVew",
@@ -967,7 +969,7 @@ source  | string | **可选**，created可获取所有当前用户是表单创�
 ------------- | ------------- | -----------
 access_token  | string | **必须**，可使用2.1中的个人access token，或2.2中的企业access token。
 openid  | string | **可选**，获取的用户列表中的openid。使用个人的acces token无需填写；使用企业的access token必须填写。
-name  | string | **可选**，复制出来的表单命名。如果不提供或者为空字符串，将使用“[新]”+原表单名作为复制后的表单的名字。 
+name  | string | **可选**，复制出来的表单命名。如果不提供或者为空字符串，将使用“[新]”+原表单名作为复制后的表单的名字。
 
 默认情况下，返回的response的形式如下：
 
