@@ -32,7 +32,7 @@
     if (d.getElementById(n)) {return;}
     a = document.createElement(t); a.id = n; a.type = 'text/javascript'; a.async = true; a.src = s;
     x.parentNode.insertBefore(a, x);
-  })(window, document, 'script', 'https://www.jinshuju.net/sdk.js?appid=<your_sdk_appid>&v=1.0.0', 'gdsdk');
+  })(window, document, 'script', 'https://jinshuju.net/sdk.js?appid=<your_sdk_appid>&v=1.0.0', 'gdsdk');
 <script>
 ```
 
@@ -62,10 +62,10 @@ gdsdk.editForm("Dv6jVf")
 
 ### 4. 表单规则
 
-你可以通过调用`gdsdk.formRule("<form_token>")`方法来编辑表单规则。示例如下
+你可以通过调用`gdsdk.createFieldRule("<form_token>")`方法来创建表单字段规则。示例如下
 
 ```javascript
-gdsdk.formRule("Dv6jVf")
+gdsdk.createFieldRule("Dv6jVf")
 ```
 
 ### 5. 保存表单
@@ -132,5 +132,5 @@ SDK中支持JWT登录用户。JWT 中需包含请求登录用户的uid，其直�
 ```javascript
 gdsdk.createForm("<jwt>")
 gdsdk.editForm("<form_token>", "<jwt>")
-gdsdk.formRule("<form_token>", "<jwt>")
+gdsdk.createFieldRule("<form_token>", "<jwt>")
 ```
