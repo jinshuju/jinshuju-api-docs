@@ -10,9 +10,9 @@
 
 * [账户位于 jinshuju.net（包含免费版/付费版/企业套餐）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/personal-api.md)
 
-## 简单API
+## 基础API
 
-如果你希望使用金数据**简单API**，请访问帮助中心 [https://jinshuju.net/help/articles/api-intro](https://jinshuju.net/help/articles/api-intro)
+如果你希望使用金数据**基础API**，请访问帮助中心 [https://jinshuju.net/help/articles/api-intro](https://jinshuju.net/help/articles/api-intro)
 
 ## 备注
 
