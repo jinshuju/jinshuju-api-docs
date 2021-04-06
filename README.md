@@ -8,5 +8,6 @@
 
 * [账户位于 jinshuju.net（包含免费版/付费版/企业套餐）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/personal-api.md)
 
-* [账户位于 jinshuju.com（包含企业套餐）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/enterprise-api.md)
+## 备注
 
+如果你还在使用 jinshuju.com 上的遗留版本，请联系你的客户成功经理。
