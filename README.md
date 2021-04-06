@@ -4,6 +4,9 @@
 
 * [账户位于 jinshuju.net（包含免费版/付费版/企业套餐）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/personal-api.md)
 
+## 金数据 SDK 文档
+
+* [账户位于 jinshuju.net（包含免费版/付费版/企业套餐）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/personal-api.md)
+
 * [账户位于 jinshuju.com（包含企业套餐）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/enterprise-api.md)
 
-* [金数据SDK（目前仅支持 jinshuju.com）](https://github.com/jinshuju/jinshuju-api-docs/blob/master/enterprise-sdk.md)
