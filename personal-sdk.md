@@ -123,6 +123,13 @@ gdsdk.ready = function() {
 
 ### 8. 支持 JWT 登录
 
+jwt 生成规则
+
+```ruby
+payload = {"uid": "5ff2e3fc7423543f19c15e62"}
+jwt = JWT.encode(payload, sdk_secret)
+```
+
 SDK中支持JWT登录用户。JWT 中需包含请求登录用户的uid，其直接登录金数据系统。 示例如下：
 
 ```html
