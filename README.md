@@ -8,13 +8,13 @@
 
 ## 金数据 高级API 文档
 
-* [账户位于 jinshuju.net（包含免费版/付费版/企业套餐）](jinshuju-net-api.md)
+* [账户位于 jinshuju.net](jinshuju-net-api.md)
 
 > **高级API** 适用于 jinshuju.net 上的企业高级版、商业合作版、第三方合作伙伴
 
 ## 金数据 SDK 文档
 
-* [账户位于 jinshuju.net（包含免费版/付费版/企业套餐）](jinshuju-net-sdk.md)
+* [账户位于 jinshuju.net](jinshuju-net-sdk.md)
 
 > **SDK** 适用于 jinshuju.net 上的商业合作版、第三方合作伙伴
 
