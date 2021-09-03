@@ -70,7 +70,7 @@ gdsdk.createFieldRule("Dv6jVf")
 
 ### 5. 保存表单
 
-在iframe中表单保存成功后, 会抛出一个事件, 其中 data 是该表单的 token, 可后面用 v1 API 获取其他信息
+表单保存成功后, 会抛出一个事件, 其中 data 是该表单的 token, 可后面用 v1 API 获取其他信息
 ![post_messag](./images/post_message.png)
 
 ### 6. 控制表单显示和隐藏的字段
@@ -121,7 +121,30 @@ gdsdk.ready = function() {
 };
 ```
 
-### 8. 支持 JWT 登录
+### 8. 控制SDK新建场景化的表单
+你可以配置在引用的SDK中打开场景化的表单编辑器页面，如 普通表单（默认）、问卷、活动报名、投票、考试、预约、营销落地页、测评、在线收款, 例如
+
+```javascript
+gdsdk.ready = function() {
+  gdsdk.config({
+    scene: 'form'
+  })
+};
+```
+
+可配置选项如下:
+```
+form, survey, registry, vote, exam, reservation, customer_acquisition, evaluation, online_payment
+```
+
+分表代表:
+```
+普通表单, 问卷, 活动报名, 投票, 考试, 预约, 营销落地页, 测评, 在线收款
+```
+
+备注: 如未配置 scene, 则默认为普通表单 
+
+### 9. 支持 JWT 登录
 
 SDK中支持JWT登录用户。JWT 中需包含请求登录用户的uid，其直接登录金数据系统。 示例如下：
 
