@@ -1,70 +1,108 @@
 # 金数据高级API文档 (jinshuju.net)
 
-**注意高级API限通用型saas平台产品和金数据企业高级版及以上版本使用，且仅支持这两种类型的用户开通**
+> 高级API限通用型saas平台产品和金数据企业高级版及以上版本使用，且仅支持这两种类型的用户开通
 
-**本文档适用于您的金数据账号位于 jinshuju.net，如有疑问请联系客服或者销售**
+> 本文档适用于你的金数据账号位于 jinshuju.net，如有疑问请联系客服或者销售
 
-金数据API使用OAuth 2标准进行用户验证。
+金数据高级API使用 OAuth2 标准进行用户验证。
 
 ## 发送请求
 
-所有的URL需要以`https://api.jinshuju.net/v4/`开头。仅支持SSL。目前API版本为`v4`版本。例如，想获得当前用户的基本信息情况：
+所有的URL需要以 `https://api.jinshuju.net/v4/` 开头。仅支持SSL。目前API版本为 `v4` 版本。例如，想获得当前用户的基本信息情况：
 
-    curl https://api.jinshuju.net/v4/me?access_token=...
+    GET https://api.jinshuju.net/v4/me?access_token=...
 
 ## OAuth 2验证
 
-v4版本的金数据API支持OAuth 2。你可以使用标准的OAuth交互协议进行访问。相关URL如下：
+v4 版本的金数据API支持 OAuth 2。你可以使用标准的 OAuth 交互协议进行访问。相关URL如下：
 
 * 认证域: https://account.jinshuju.net
 * 接口域: https://api.jinshuju.net/v4
 
 ### 1. 转向到金数据申请验证
-### 1.1 转向到金数据申请验证
+
+#### 1.1 对于单个用户（子账号）申请验证
+
+用于单个用户（子账号）的授权。授权后可以访问单个用户（子账号）的资源。
 
     GET https://account.jinshuju.net/oauth/authorize
 
 参数
 
-参数名称  | 类型  | 备注
+参数名称 | 类型 | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
-redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `profile` `forms` `read_entries` `form_setting`，默认为public。
+client_id | string | **必须**，注册的金数据应用ID。
+redirect_uri | string | **必须**，金数据应用的 Callback URI，当授权完成之后要转向的地址。
+response_type | string | **必须**，仅支持 `code`。
+scope | string | 空格隔开的列表。目前支持的 scope 包括：`public` `profile` `forms` `read_entries` `form_setting`，默认为 `public`。
 state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
-### 1.2 转向到金数据申请企业的验证
+#### 1.2 对于整个企业申请验证
+
+用于整个企业的授权。授权后可以访问整个企业的资源。
 
     GET https://account.jinshuju.net/org_oauth/authorize
 
 参数
 
-参数名称  | 类型  | 备注
+参数名称 | 类型 | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
-redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-response_type | string | **必须**，OAuth 2中必须将其指定为`code`。
-scope  | string | 空格隔开的列表。目前支持的scope包括：`public` `profile` `forms` `read_entries` `write_entries` `form_setting` `read_contacts` `users`
+client_id | string | **必须**，注册的金数据应用ID。
+redirect_uri | string | **必须**，金数据应用的 Callback URI，当授权完成之后要转向的地址。
+response_type | string | **必须**，仅支持 `code`。
+scope  | string | 空格隔开的列表。目前支持的 scope 包括：`public` `profile` `forms` `read_entries` `write_entries` `form_setting` `read_contacts` `users`
 state | string | 唯一随机的的字符串，用来防止跨站攻击。
 
-### 2. 获得访问的access token
+### 2. 获得访问的 Access Token
 
-### 2.1 获取用户访问的access token
-用户同意之后，金数据将会转向到你的网站，并带上`code`和之前提供的`state`参数。如果state不匹配，你可以终止这个请求。
+#### 2.1 获取单个用户（子账号）的 Access Token
 
-拿到code之后，就可以交换access token:
+用户同意之后，金数据将会转向到你的网站，并带上 `code` 和之前提供的 `state` 参数。如果 `state` 不匹配，你可以终止这个请求。
+
+拿到 code 之后，就可以交换 Access Token:
 
     POST https://account.jinshuju.net/oauth/token
 
 参数
 
-参数名称  | 类型  | 备注
+参数名称 | 类型  | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
-client_secret  | string | **必须**，金数据应用的secret。
-code  | string | **必须**，在第一步获得的code。
-redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
+client_id | string | **必须**，注册的金数据应用ID。
+client_secret | string | **必须**，金数据应用的 Secret。
+code | string | **必须**，在上一步获得的 code。
+redirect_uri | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
+grant_type | string | **必须**，指定为 `authorization_code`。
+state | string | 在第一步使用的唯一随机的的字符串。
+
+默认情况下，返回的 response 的形式如下：
+
+````json
+{
+    "access_token": "2994eec8c8b19c2a2103ae2a335dc781220bb701d4c2c7d1b4cc7c629353f8a4",
+    "token_type": "bearer",
+    "expires_in": 7200,
+    "refresh_token": "a563ed398b919388bc2e87b29f8d3b6e42a1195cdc1d9e36c6e9bcaa153bc6d3",
+    "scope": "public forms read_entries",
+    "created_at": 1455680792
+}
+````
+
+#### 2.2 获取企业的 Access Token
+
+企业同意之后，金数据将会转向到你的网站，并带上 `code` 和之前提供的 `state` 参数。如果 state 不匹配，你可以终止这个请求。
+
+拿到 code 之后，就可以交换 Access Token:
+
+    POST https://account.jinshuju.net/org_oauth/token
+
+参数
+
+参数名称 | 类型 | 备注
+------------- | ------------- | -----------
+client_id | string | **必须**，注册的金数据应用ID。
+client_secret | string | **必须**，金数据应用的 Secret。
+code | string | **必须**，在上一步中获得的企业 code。
+redirect_uri | string | **必须**，金数据应用的 Callback URI，当授权完成之后要转向的地址。
 grant_type | string | **必须**，指定为 `authorization_code`。
 state | string | 在第一步使用的唯一随机的的字符串。
 
@@ -81,53 +119,25 @@ state | string | 在第一步使用的唯一随机的的字符串。
 }
 ````
 
-### 2.2 获取企业访问的access token
+### 2.3 使用 refresh token 获得新的 access_token
 
-企业同意之后，金数据将会转向到你的网站，并带上`code`和之前提供的`state`参数。如果state不匹配，你可以终止这个请求。
+目前 access_token 有效期为 7200秒，当 access_token 过期时，可以使用 refresh_token 来获得新的 access_token。
 
-拿到code之后，就可以交换access token:
-    POST https://account.jinshuju.net/org_oauth/token
+#### 刷新用户的 access_token:
 
-参数
-
-参数名称  | 类型  | 备注
-------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放。
-client_secret  | string | **必须**，金数据应用的secret。
-code  | string | **必须**，在1.2中获得的企业code。
-redirect_uri  | string | **必须**，金数据应用的callback URI，当授权完成之后要转向的地址。
-grant_type | string | **必须**，指定为 `authorization_code`。
-state | string | 在第一步使用的唯一随机的的字符串。
-
-默认情况下，返回的response的形式如下：
-
-````json
-{
-    "access_token": "2994eec8c8b19c2a2103ae2a335dc781220bb701d4c2c7d1b4cc7c629353f8a4",
-    "token_type": "bearer",
-    "expires_in": 7200,
-    "refresh_token": "a563ed398b919388bc2e87b29f8d3b6e42a1195cdc1d9e36c6e9bcaa153bc6d3",
-    "scope": "public forms read_entries",
-    "created_at": 1455680792
-}
-````
-
-### 2.3 使用refresh token获得新的access_token
-目前access_token有效期为7200秒,当access_token过期时，可以使用refresh_token来获得新的access_token。
-
-#### 刷新用户的access_token:
     POST https://account.jinshuju.net/oauth/token
 
 参数
 
-参数名称  | 类型  | 备注
+参数名称 | 类型 | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放
-client_secret  | string | **必须**，金数据应用的secret
-refresh_token  | string | **必须**，获取access_token时得到的refresh_token。
+client_id | string | **必须**，注册的金数据应用ID
+client_secret | string | **必须**，金数据应用的 Secret
+refresh_token | string | **必须**，获取 access_token 时得到的 refresh_token。
 grant_type | string | **必须**，指定为 `refresh_token`。
 
-返回的response的形式如下，得到新的access_token 和refresh_token：
+返回的 response 的形式如下，得到新的 access_token 和 refresh_token：
+
 ````json
 {
     "access_token": "0909a26c330883cf2cd44f8926c663ac1d639ed2940d879fb2bf4a62e06ff4a8",
@@ -139,20 +149,21 @@ grant_type | string | **必须**，指定为 `refresh_token`。
 }
 ````
 
-#### 刷新企业的access_token:
+#### 刷新企业的 access_token:
 
     POST https://account.jinshuju.net/org_oauth/token
 
 参数
 
-参数名称  | 类型  | 备注
+参数名称 | 类型  | 备注
 ------------- | ------------- | -----------
-client_id  | string | **必须**，注册的金数据应用ID，目前仅对金数据商业合作伙伴开放
-client_secret  | string | **必须**，金数据应用的secret
-refresh_token  | string | **必须**，在2.2中获取access_token时得到的refresh_token。
+client_id | string | **必须**，注册的金数据应用ID
+client_secret | string | **必须**，金数据应用的 secret
+refresh_token | string | **必须**，在2.2中获取 access_token 时得到的 refresh_token。
 grant_type | string | **必须**，指定为 `refresh_token`。
 
-返回的response的形式如下，得到新的access_token 和refresh_token：
+返回的 response 的形式如下，得到新的 access_token 和 refresh_token：
+
 ````json
 {
     "access_token": "0909a26c330883cf2cd44f8926c663ac1d639ed2940d879fb2bf4a62e06ff4a8",
@@ -164,26 +175,27 @@ grant_type | string | **必须**，指定为 `refresh_token`。
 }
 ````
 
-### 3. 使用access token访问API
+### 3. 使用 access token 访问 API
 
     GET https://api.jinshuju.net/v4/forms?access_token=...
 
-你可以把token放在URL中。也可以使用Authorization header如下：
+你可以把 token 放在URL中。也可以使用 Authorization header 如下：
 
     Authorization: bearer OAUTH-TOKEN
 
-例如使用curl
+例如使用 curl
 
     curl -H "Authorization: bearer OAUTH-TOKEN" https://api.jinshuju.net/v4/forms
 
-
 ## Redirect URL
 
-`redirect_uri`是必须的。如果你使用[omniauth-jinshuju](https://github.com/jinshuju/omniauth-jinshuju)，就可以使用类似于`https://domain.com/auth/jinshuju/callback`的地址。
+`redirect_uri` 是必须的。如果你使用 [omniauth-jinshuju](https://github.com/jinshuju/omniauth-jinshuju)，就可以使用类似于`https://domain.com/auth/jinshuju/callback` 的地址。
 
 ## Scopes
-Scope定义了资源范围。目前支持八个：`public`、`profile`、`forms`、`read_entries`、`write_entries`、`form_setting`、`read_contacts`、`users`
-* public, 获取用户的头像、昵称、邮箱、是否为付费用户等信息（**邮箱、是否付费将会在后面的版本中移除，如需要，请使用profile scope**）
+
+Scope 定义了资源范围。目前支持八个：`public`、`profile`、`forms`、`read_entries`、`write_entries`、`form_setting`、`read_contacts`、`users`
+
+* public, 获取用户的头像、昵称、邮箱、是否为付费用户等信息（**邮箱、是否付费将会在后面的版本中移除，如需要，请使用 profile scope**）
 * profile, 获取用户的账户信息，邮箱、是否为付费用户（只读）、自定义域名（只读）
 * forms, 获取用户所有表单信息、单个表单详情、表单当前状态（是否开启，填写权限，已收集数据量）
 * read_entries, 获取某表单下的数据信息，批量获取或单条获取，并且可基于查询条件获取想要的数据
@@ -192,9 +204,9 @@ Scope定义了资源范围。目前支持八个：`public`、`profile`、`forms`
 * users，获取企业的用户列表
 * read_contacts，获取联系人列表和联系人标签列表
 
-
 ## 访问限制
-访问API是基于金数据授权的用户来做频率限制的，目前免费用户1,000次/小时，专业版用户10,000次/小时，专业增强版用户20,000次/小时。
+
+访问API是基于金数据授权的用户来做频率限制的。
 
 HTTP Header中会留下相应的信息。
 
@@ -205,45 +217,45 @@ HTTP Header中会留下相应的信息。
 
 ## 分页
 
-当请求返回多个条目时，如表单列表、数据列表时，默认每次(per_page)返回20个条目，可以设定per_page参数来单次获得更多的数据，但目前最多支持50条。
+当请求返回多个条目时，如表单列表、数据列表时，默认每次(per_page)返回20个条目，可以设定 per_page 参数来单次获得更多的数据，目前最多支持50条。
 
 例如：
 
     GET https://api.jinshuju.net/v4/forms?access_token=...&per_page=50
 
-在每一次请求返回的header里会包含分页信息，如下表所示：
+在每一次请求返回的 header 里会包含分页信息，如下表所示：
 
-Header Name  | Description
+Header Name | Description
 ------------- | -----------
-X-Total  | 符合条件的总数，例如X-Total:50
-X-Count  | 当前请求返回的数量，例如X-Count:20
-Link  | 包含上一页(prev)或下一页(next)的访问地址，rel目前仅支持next和prev。
+X-Total | 符合条件的总数，例如 X-Total:50
+X-Count | 当前请求返回的数量，例如 X-Count:20
+Link | 包含上一页(prev)或下一页(next)的访问地址，rel 目前仅支持 next 和 prev。
 
-例如获取表单列表时，request header里会返回如下：
+例如获取表单列表时，request header 里会返回如下：
+
 ```html
 Link:<https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="prev",
   <https://api.jinshuju.net/v4/forms?access_token=...&per_page=20&cursor=xxxxx>; rel="next"
 ```
 
-在发出第一次查询请求后，不断的检查返回的Link Header里的next列表，如果存在则直接使用链接去获取，不存在则代表批量获取完成。
+在发出第一次查询请求后，不断的检查返回的 Link Header 里的 next 列表，如果存在则直接使用链接去获取，不存在则代表批量获取完成。
 
-链接中的cursor是查询的游标，在访问不同的api时，含义不同。查询表单列表时，代表下一次要取的表单的id；查询数据列表时，代表下一次要取的数据的序号，数据序号是一个递增的整数，由于存在数据删除的情况，所以可能是不连贯的，不建议采用分页数值和序号来拼cursor值。
+链接中的 cursor 是查询的游标，在访问不同的 api 时，含义不同。查询表单列表时，代表下一次要取的表单的 id；查询数据列表时，代表下一次要取的数据的序号，数据序号是一个递增的整数，由于存在数据删除的情况，所以可能是不连贯的，不建议采用分页数值和序号来拼 cursor 值。
 
 ## API列表
 
 ### 获取企业中用户列表
 
-需要Scope: `users`
+需要 Scope: `users`
 
-    get https://api.jinshuju.net/v4/users
+    GET https://api.jinshuju.net/v4/users
 
 参数
 
-参数名称  | 类型  | 备注
+参数名称 | 类型  | 备注
 ------------- | ------------- | -----------
-access_token  | string | **必须**，可使用企业管理员认证的2.1中的个人access token，或使用2.2中的企业access token。
+access_token | string | **必须**，可使用企业管理员认证的2.1中的个人access token，或使用2.2中的企业access token。
 
-Json Load:
 ```json
 {
   "users": [
@@ -251,7 +263,6 @@ Json Load:
       "email": "email@mail.com",
       "nickname": "email@mail.com",
       "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
-      "paid": false,
       "uid": "fk3a9EvKTu3KKmTqa2CisQ",
       "openid": "fk3a9EvKTu3KKmTqa2CisQ",
       "role": "admin",
@@ -269,7 +280,7 @@ Json Load:
 
 ### 获取当前用户基本信息
 
-需要Scope: `public`或者默认
+需要 Scope: `public` 或者默认
 
     GET https://api.jinshuju.net/v4/me?access_token=...
 
@@ -278,42 +289,42 @@ Json Load:
   "email": "email@mail.com",
   "nickname": "email@mail.com",
   "avatar": "https://dn-jsjpub.qbox.me/av/517aa4fe24290aa13800001395.jpg",
-  "paid": false,
   "uid": "fk3a9EvKTu3KKmTqa2CisQ"
 }
 ```
+
+返回值说明
 
 参数名  | 类型 | 参数说明
 ------------- | ----------- | ---------
 email  | String  | 用户邮箱地址，全局唯一
 nickname  |  String  | 用户昵称
 avatar  |  String  | 头像地址
-paid  |  Boolean  | 是否为付费用户
 uid  |  String  |  用户id
 
 ### 获取当前用户账户信息
 
-需要Scope: `profile`
+需要 Scope: `profile`
 
     GET https://api.jinshuju.net/v4/profile?access_token=...
 
 ```json
 {
   "email": "email@mail.com",
-  "paid": false,
   "custom_domain": 'forms.example.com'
 }
 ```
 
-参数名  | 类型 | 参数说明
+返回值说明
+
+参数名 | 类型 | 参数说明
 ------------- | ----------- | ---------
-email  | String  | 用户邮箱地址，全局唯一
-paid  |  Boolean  | 是否为付费用户
+email | String  | 用户邮箱地址，全局唯一
 custom_domain | String | 自定义域名信息，该功能可用时返回用户在个人中心设置的值，否则为空
 
 ### 获取表单列表
 
-需要Scope: `forms`
+需要 Scope: `forms`
 
     GET https://api.jinshuju.net/v4/forms?access_token=...
 
@@ -323,7 +334,6 @@ custom_domain | String | 自定义域名信息，该功能可用时返回用户�
 ------------- | ------------- | -----------
 access_token  | string | **必须**，可使用2.1中的个人access token，可获取企业成员的的所有表单；或2.2中的企业access token，可获取企业中的所有表单。
 openid  | string | **可选**，通过企业的access_token获取用户表单列表时必须填写，通过用户access_token获取用户列表时无需填写。
-
 
 ```json
 [
@@ -698,9 +708,9 @@ openid  | string | **可选**，通过企业的access_token获取用户表单列
 
 ### 复制表单
 
-注意：示例中的<2d4iH0>为被复制的表单token
+注意：示例中的 `2d4iH0` 为被复制的表单token
 
-POST https://api.jinshuju.net/v4/forms/2d4iH0/copy
+    POST https://api.jinshuju.net/v4/forms/2d4iH0/copy
 
 参数
 
@@ -710,7 +720,7 @@ access_token  | string | **必须**，可使用2.1中的个人access token，或
 openid  | string | **可选**，获取的用户列表中的openid。使用个人的acces token无需填写；使用企业的access token必须填写。
 name  | string | **可选**，复制出来的表单命名。如果不提供或者为空字符串，将使用“[新]”+原表单名作为复制后的表单的名字。
 
-默认情况下，返回的response的形式如下：
+默认情况下，返回的 response 的形式如下：
 
 ```json
 {
@@ -742,277 +752,6 @@ name  | string | **可选**，复制出来的表单命名。如果不提供或�
             "predefined_value": "",
             "private": false,
             "validations": {}
-        },
-        {
-            "type": "single_choice",
-            "label": "称呼",
-            "api_code": "field_2",
-            "notes": "",
-            "predefined_value": null,
-            "private": false,
-            "validations": {
-                "required": true
-            },
-            "choices": [
-                {
-                    "name": "先生",
-                    "value": "2jYk"
-                },
-                {
-                    "name": "女士",
-                    "value": "pIjs"
-                },
-                {
-                    "name": "保密",
-                    "value": "yofb"
-                }
-            ],
-            "allow_other": false
-        },
-        {
-            "type": "phone",
-            "label": "手机",
-            "api_code": "field_4",
-            "notes": "",
-            "predefined_value": "",
-            "private": false,
-            "validations": {
-                "required": true
-            }
-        },
-        {
-            "type": "multiple_choice",
-            "label": "您所在的行业",
-            "api_code": "field_3",
-            "notes": "",
-            "predefined_value": null,
-            "private": false,
-            "validations": {
-                "required": true
-            },
-            "choices": [
-                {
-                    "name": "餐饮",
-                    "value": "vXHU"
-                },
-                {
-                    "name": "娱乐",
-                    "value": "0yrs"
-                },
-                {
-                    "name": "教育",
-                    "value": "zI63"
-                },
-                {
-                    "name": "IT/互联网/计算机",
-                    "value": "uN9L"
-                },
-                {
-                    "name": "微信营销",
-                    "value": "0tKd"
-                },
-                {
-                    "name": "零售",
-                    "value": "1eS0"
-                },
-                {
-                    "name": "旅游",
-                    "value": "zFay"
-                },
-                {
-                    "name": "汽车",
-                    "value": "iYs5"
-                },
-                {
-                    "name": "金融",
-                    "value": "rmIa"
-                },
-                {
-                    "name": "房地产",
-                    "value": "KzHg"
-                },
-                {
-                    "name": "电子商务",
-                    "value": "yP93"
-                },
-                {
-                    "name": "家居",
-                    "value": "51UD"
-                },
-                {
-                    "name": "文化/媒体",
-                    "value": "Gdyw"
-                },
-                {
-                    "name": "服饰",
-                    "value": "e5dJ"
-                },
-                {
-                    "name": "医疗",
-                    "value": "0vZh"
-                },
-                {
-                    "name": "服务行业",
-                    "value": "etAf"
-                },
-                {
-                    "name": "学生",
-                    "value": "ArtE"
-                }
-            ],
-            "allow_other": true
-        },
-        {
-            "type": "email",
-            "label": "邮箱",
-            "api_code": "field_17",
-            "notes": "",
-            "predefined_value": null,
-            "private": false,
-            "validations": {
-                "required": true
-            }
-        },
-        {
-            "type": "multiple_choice",
-            "label": "此行目的",
-            "api_code": "field_5",
-            "notes": "<p>我们会与您分享金数据的行业使用情况，也欢迎您来与我们分享自己的使用体会</p>",
-            "predefined_value": null,
-            "private": false,
-            "validations": {},
-            "choices": [
-                {
-                    "name": "听听金数据官方的使用案例分享",
-                    "value": "7oLf"
-                },
-                {
-                    "name": "听听其他金数据用户的使用情况",
-                    "value": "vQki"
-                },
-                {
-                    "name": "分享我自己使用金数据的情况",
-                    "value": "6qHO"
-                },
-                {
-                    "name": "与其他金数据用户交流使用心得",
-                    "value": "MCkX"
-                }
-            ],
-            "allow_other": true
-        },
-        {
-            "type": "single_choice",
-            "label": "您是否愿意分享一个话题？",
-            "api_code": "field_10",
-            "notes": "<p>与现场观众分享金数据的使用体验，可能获得意想不到的商机，或者朋友</p>",
-            "predefined_value": null,
-            "private": false,
-            "validations": {},
-            "choices": [
-                {
-                    "name": "是，我想与其他人分享",
-                    "value": "1lq3"
-                },
-                {
-                    "name": "不是，我更乐意当听众",
-                    "value": "J2RP"
-                }
-            ],
-            "allow_other": false
-        },
-        {
-            "type": "single_line_text",
-            "label": "话题名称",
-            "api_code": "field_11",
-            "notes": "<p>我们与您联系并且通知您是否通过审核（您可能会接到来自金数据的电话）</p>",
-            "predefined_value": "",
-            "private": false,
-            "validations": {
-                "required": true
-            }
-        },
-        {
-            "type": "paragraph_text",
-            "label": "话题简介",
-            "api_code": "field_12",
-            "notes": "<p>亲爱的，如果你想要在活动上分享，我们希望你的话题是精心准备的，所以请告诉我们话题简介吧。</p>",
-            "predefined_value": "",
-            "private": false,
-            "validations": {
-                "required": true
-            }
-        },
-        {
-            "type": "paragraph_text",
-            "label": "对于这次活动，您有什么想要问我们的？",
-            "api_code": "field_6",
-            "notes": "",
-            "predefined_value": "",
-            "private": false,
-            "validations": {}
-        },
-        {
-            "type": "drop_down",
-            "label": "是否已经联系",
-            "api_code": "field_7",
-            "notes": "",
-            "predefined_value": null,
-            "private": true,
-            "validations": {},
-            "choices": [
-                {
-                    "name": "是",
-                    "value": "SoG1"
-                },
-                {
-                    "name": "否",
-                    "value": "iyh7"
-                },
-                {
-                    "name": "没打通",
-                    "value": "9m1q"
-                }
-            ],
-            "allow_other": false
-        },
-        {
-            "type": "paragraph_text",
-            "label": "联系情况",
-            "api_code": "field_8",
-            "notes": "",
-            "predefined_value": "1. 能否参加\n2. 哪个公司？\n3. 金数据的使用情况",
-            "private": true,
-            "validations": {}
-        },
-        {
-            "type": "single_choice",
-            "label": "签到",
-            "api_code": "field_15",
-            "notes": "",
-            "predefined_value": null,
-            "private": true,
-            "validations": {},
-            "choices": [
-                {
-                    "name": "是 ",
-                    "value": "303X"
-                },
-                {
-                    "name": "否",
-                    "value": "2Y8V"
-                }
-            ],
-            "allow_other": false
-        },
-        {
-            "type": "paragraph_text",
-            "label": "备注",
-            "api_code": "field_18",
-            "notes": "",
-            "predefined_value": "",
-            "private": true,
-            "validations": {}
         }
     ],
     "setting": {
@@ -1031,7 +770,7 @@ name  | string | **可选**，复制出来的表单命名。如果不提供或�
 
 ### 获取表单当前状态
 
-需要Scope: `forms`
+需要 Scope: `forms`
 
     GET https://api.jinshuju.net/v4/forms/RygpW3/status?access_token=...
 
@@ -1045,7 +784,7 @@ name  | string | **可选**，复制出来的表单命名。如果不提供或�
 
 ### 获取多条数据
 
-需要Scope： `read_entries`
+需要 Scope： `read_entries`
 
     GET https://api.jinshuju.net/v4/forms/RygpW3/entries?access_token=...
 
@@ -1121,7 +860,7 @@ name  | string | **可选**，复制出来的表单命名。如果不提供或�
 
 ### 获取单条数据
 
-需要Scope: `read_entries`
+需要 Scope: `read_entries`
 
     GET https://api.jinshuju.net/v4/forms/RygpW3/entries/<序列号>?access_token=...
 
@@ -1230,7 +969,6 @@ access_token    | string | **必须**,可使用2.1中的个人access token，或
 openid | string | **必须**，获取的用户列表中的openid。这里需填写加为协作成员的用户openid。
 role | string | **必须**，指定的角色，仅支持 manager, data_maintainer, data_viewer。
 
-
 #### 为表单变更协作成员角色
 
 需要Scope: `form_setting`
@@ -1252,7 +990,6 @@ role | string | **必须**，指定的角色，仅支持 manager, data_maintaine
 ------------- | ------------- | -----------
 access_token    | string | **必须**,可使用2.1中的个人access token，或2.2中的企业access token。
 
-
 #### 删除表单
 
 需要Scope: `forms`
@@ -1265,7 +1002,7 @@ access_token | string | **必须**,可使用2.1中的个人access token，或2.2
 
 ### 获取联系人列表
 
-需要Scope: `read_contacts`
+需要 Scope: `read_contacts`
 
     GET https://api.jinshuju.net/v4/contacts?access_token=...
 
