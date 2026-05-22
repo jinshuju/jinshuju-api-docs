@@ -1,0 +1,29 @@
+name: Documentation feedback
+description: Report unclear, missing, or outdated API or SDK documentation
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: page
+    attributes:
+      label: Page or section
+      description: Which page or section is this feedback about?
+      placeholder: "For example: jinshuju-net-api.md, enterprise-sdk.md..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What should be improved?
+      description: Describe what is unclear, missing, outdated, or incorrect.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested change
+      description: If you have a suggested wording or example, include it here.
+    validations:
+      required: false
